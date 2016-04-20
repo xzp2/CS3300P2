@@ -1,0 +1,502 @@
+[
+  {
+    "STATENAME": "Alabama",
+    "STATE": 1,
+    "Forest": 70,
+    "Temp": 62.8,
+    "Elevation": 500,
+    "Rain": 58.3,
+    "Drugs": 44.5,
+    "Alcohol": 1.99
+  },
+  {
+    "STATENAME": "Alaska",
+    "STATE": 2,
+    "Forest": 62.8,
+    "Temp": 26.6,
+    "Elevation": "1,900",
+    "Rain": 22.5,
+    "Drugs": 64.2,
+    "Alcohol": 2.73
+  },
+  {
+    "STATENAME": "Arizona",
+    "STATE": 4,
+    "Forest": 19.2,
+    "Temp": 60.3,
+    "Elevation": "4,100",
+    "Rain": 13.6,
+    "Drugs": 53.1,
+    "Alcohol": 2.36
+  },
+  {
+    "STATENAME": "Arkansas",
+    "STATE": 5,
+    "Forest": 57.2,
+    "Temp": 60.4,
+    "Elevation": 650,
+    "Rain": 50.6,
+    "Drugs": 49.9,
+    "Alcohol": 1.81
+  },
+  {
+    "STATENAME": "California",
+    "STATE": 6,
+    "Forest": 36.1,
+    "Temp": 59.4,
+    "Elevation": "2,900",
+    "Rain": 22.2,
+    "Drugs": 49,
+    "Alcohol": 2.33
+  },
+  {
+    "STATENAME": "Colorado",
+    "STATE": 8,
+    "Forest": 23.6,
+    "Temp": 45.1,
+    "Elevation": "6,800",
+    "Rain": 15.9,
+    "Drugs": 61.5,
+    "Alcohol": 2.81
+  },
+  {
+    "STATENAME": "Connecticut",
+    "STATE": 9,
+    "Forest": 72.6,
+    "Temp": 49,
+    "Elevation": 500,
+    "Rain": 50.3,
+    "Drugs": 58.7,
+    "Alcohol": 2.37
+  },
+  {
+    "STATENAME": "Delaware",
+    "STATE": 10,
+    "Forest": 33.3,
+    "Temp": 55.3,
+    "Elevation": 60,
+    "Rain": 45.7,
+    "Drugs": 58.9,
+    "Alcohol": 3.6
+  },
+  {
+    "STATENAME": "Florida",
+    "STATE": 12,
+    "Forest": 54.9,
+    "Temp": 70.7,
+    "Elevation": 100,
+    "Rain": 54.5,
+    "Drugs": 50.4,
+    "Alcohol": 2.72
+  },
+  {
+    "STATENAME": "Georgia",
+    "STATE": 13,
+    "Forest": 66.4,
+    "Temp": 63.5,
+    "Elevation": 600,
+    "Rain": 50.7,
+    "Drugs": 50.1,
+    "Alcohol": 1.98
+  },
+  {
+    "STATENAME": "Hawaii",
+    "STATE": 15,
+    "Forest": 37.7,
+    "Temp": 70,
+    "Elevation": "3,030",
+    "Rain": 63.7,
+    "Drugs": 56.8,
+    "Alcohol": 2.57
+  },
+  {
+    "STATENAME": "Idaho",
+    "STATE": 16,
+    "Forest": 37.9,
+    "Temp": 44.4,
+    "Elevation": "5,000",
+    "Rain": 18.9,
+    "Drugs": 54.8,
+    "Alcohol": 2.81
+  },
+  {
+    "STATENAME": "Illinois",
+    "STATE": 17,
+    "Forest": 15.6,
+    "Temp": 51.8,
+    "Elevation": 600,
+    "Rain": 39.2,
+    "Drugs": 50.6,
+    "Alcohol": 2.33
+  },
+  {
+    "STATENAME": "Indiana",
+    "STATE": 18,
+    "Forest": 25.7,
+    "Temp": 51.7,
+    "Elevation": 700,
+    "Rain": 41.7,
+    "Drugs": 52,
+    "Alcohol": 2.09
+  },
+  {
+    "STATENAME": "Iowa",
+    "STATE": 19,
+    "Forest": 10.4,
+    "Temp": 47.8,
+    "Elevation": "1,100",
+    "Rain": 34,
+    "Drugs": 47.3,
+    "Alcohol": 2.35
+  },
+  {
+    "STATENAME": "Kansas",
+    "STATE": 20,
+    "Forest": 8,
+    "Temp": 54.3,
+    "Elevation": "2,000",
+    "Rain": 28.9,
+    "Drugs": 50.4,
+    "Alcohol": 1.88
+  },
+  {
+    "STATENAME": "Kentucky",
+    "STATE": 21,
+    "Forest": 58,
+    "Temp": 55.6,
+    "Elevation": 750,
+    "Rain": 48.9,
+    "Drugs": 51.1,
+    "Alcohol": 1.85
+  },
+  {
+    "STATENAME": "Louisiana",
+    "STATE": 22,
+    "Forest": 51.5,
+    "Temp": 66.4,
+    "Elevation": 100,
+    "Rain": 60.1,
+    "Drugs": 45.3,
+    "Alcohol": 2.59
+  },
+  {
+    "STATENAME": "Maine",
+    "STATE": 23,
+    "Forest": 83.1,
+    "Temp": 41,
+    "Elevation": 600,
+    "Rain": 42.2,
+    "Drugs": 63,
+    "Alcohol": 2.69
+  },
+  {
+    "STATENAME": "Maryland",
+    "STATE": 24,
+    "Forest": 42.8,
+    "Temp": 54.2,
+    "Elevation": 350,
+    "Rain": 44.5,
+    "Drugs": 57.2,
+    "Alcohol": 2.18
+  },
+  {
+    "STATENAME": "Massachusetts",
+    "STATE": 25,
+    "Forest": 70.8,
+    "Temp": 47.9,
+    "Elevation": 500,
+    "Rain": 47.7,
+    "Drugs": 60,
+    "Alcohol": 2.56
+  },
+  {
+    "STATENAME": "Michigan",
+    "STATE": 26,
+    "Forest": 59.5,
+    "Temp": 44.4,
+    "Elevation": 900,
+    "Rain": 32.8,
+    "Drugs": 58.8,
+    "Alcohol": 2.24
+  },
+  {
+    "STATENAME": "Minnesota",
+    "STATE": 27,
+    "Forest": 34.8,
+    "Temp": 41.2,
+    "Elevation": "1,200",
+    "Rain": 27.3,
+    "Drugs": 57.5,
+    "Alcohol": 2.72
+  },
+  {
+    "STATENAME": "Mississippi",
+    "STATE": 28,
+    "Forest": 64,
+    "Temp": 63.4,
+    "Elevation": 300,
+    "Rain": 59,
+    "Drugs": 42.6,
+    "Alcohol": 2.25
+  },
+  {
+    "STATENAME": "Missouri",
+    "STATE": 29,
+    "Forest": 40.3,
+    "Temp": 54.5,
+    "Elevation": 800,
+    "Rain": 42.2,
+    "Drugs": 55.6,
+    "Alcohol": 2.44
+  },
+  {
+    "STATENAME": "Montana",
+    "STATE": 30,
+    "Forest": 27.5,
+    "Temp": 42.7,
+    "Elevation": "3,400",
+    "Rain": 15.3,
+    "Drugs": 61.1,
+    "Alcohol": 3.07
+  },
+  {
+    "STATENAME": "Nebraska",
+    "STATE": 31,
+    "Forest": 3.6,
+    "Temp": 48.8,
+    "Elevation": "2,600",
+    "Rain": 23.6,
+    "Drugs": 47.8,
+    "Alcohol": 2.32
+  },
+  {
+    "STATENAME": "Nevada",
+    "STATE": 32,
+    "Forest": 11.6,
+    "Temp": 49.9,
+    "Elevation": "5,500",
+    "Rain": 9.5,
+    "Drugs": 54.6,
+    "Alcohol": 3.31
+  },
+  {
+    "STATENAME": "New Hampshire",
+    "STATE": 33,
+    "Forest": 88.9,
+    "Temp": 43.8,
+    "Elevation": "1,000",
+    "Rain": 43.4,
+    "Drugs": 67.1,
+    "Alcohol": 4.68
+  },
+  {
+    "STATENAME": "New Jersey",
+    "STATE": 34,
+    "Forest": 57,
+    "Temp": 52.7,
+    "Elevation": 250,
+    "Rain": 47.1,
+    "Drugs": 48.5,
+    "Alcohol": 2.54
+  },
+  {
+    "STATENAME": "New Mexico",
+    "STATE": 35,
+    "Forest": 19.1,
+    "Temp": 53.4,
+    "Elevation": "5,700",
+    "Rain": 14.6,
+    "Drugs": 54.9,
+    "Alcohol": 2.35
+  },
+  {
+    "STATENAME": "New York",
+    "STATE": 36,
+    "Forest": 65,
+    "Temp": 45.4,
+    "Elevation": "1,000",
+    "Rain": 41.8,
+    "Drugs": 52.3,
+    "Alcohol": 2.21
+  },
+  {
+    "STATENAME": "North Carolina",
+    "STATE": 37,
+    "Forest": 62.6,
+    "Temp": 59,
+    "Elevation": 700,
+    "Rain": 50.3,
+    "Drugs": 49.9,
+    "Alcohol": 2.03
+  },
+  {
+    "STATENAME": "North Dakota",
+    "STATE": 38,
+    "Forest": 2.6,
+    "Temp": 40.4,
+    "Elevation": "1,900",
+    "Rain": 17.8,
+    "Drugs": 47.4,
+    "Alcohol": 3.38
+  },
+  {
+    "STATENAME": "Ohio",
+    "STATE": 39,
+    "Forest": 39.9,
+    "Temp": 50.7,
+    "Elevation": 850,
+    "Rain": 39.1,
+    "Drugs": 55.1,
+    "Alcohol": 2.04
+  },
+  {
+    "STATENAME": "Oklahoma",
+    "STATE": 40,
+    "Forest": 25.9,
+    "Temp": 59.6,
+    "Elevation": "1,300",
+    "Rain": 36.5,
+    "Drugs": 50.4,
+    "Alcohol": 1.93
+  },
+  {
+    "STATENAME": "Oregon",
+    "STATE": 41,
+    "Forest": 40.8,
+    "Temp": 48.4,
+    "Elevation": "3,300",
+    "Rain": 27.4,
+    "Drugs": 63.2,
+    "Alcohol": 2.66
+  },
+  {
+    "STATENAME": "Pennsylvania",
+    "STATE": 42,
+    "Forest": 65.8,
+    "Temp": 48.8,
+    "Elevation": "1,100",
+    "Rain": 42.9,
+    "Drugs": 53,
+    "Alcohol": 2.33
+  },
+  {
+    "STATENAME": "Rhode Island",
+    "STATE": 44,
+    "Forest": 70.3,
+    "Temp": 50.1,
+    "Elevation": 200,
+    "Rain": 47.9,
+    "Drugs": 62.5,
+    "Alcohol": 2.56
+  },
+  {
+    "STATENAME": "South Carolina",
+    "STATE": 45,
+    "Forest": 64.6,
+    "Temp": 62.4,
+    "Elevation": 350,
+    "Rain": 49.8,
+    "Drugs": 49.5,
+    "Alcohol": 2.31
+  },
+  {
+    "STATENAME": "South Dakota",
+    "STATE": 46,
+    "Forest": 5.7,
+    "Temp": 45.2,
+    "Elevation": "2,200",
+    "Rain": 20.1,
+    "Drugs": 47.1,
+    "Alcohol": 2.81
+  },
+  {
+    "STATENAME": "Tennessee",
+    "STATE": 47,
+    "Forest": 57.1,
+    "Temp": 57.6,
+    "Elevation": 900,
+    "Rain": 54.2,
+    "Drugs": 50.4,
+    "Alcohol": 1.99
+  },
+  {
+    "STATENAME": "Texas",
+    "STATE": 48,
+    "Forest": 23.4,
+    "Temp": 64.8,
+    "Elevation": "1,700",
+    "Rain": 28.9,
+    "Drugs": 44.5,
+    "Alcohol": 2.25
+  },
+  {
+    "STATENAME": "Utah",
+    "STATE": 49,
+    "Forest": 17.8,
+    "Temp": 48.6,
+    "Elevation": "6,100",
+    "Rain": 12.2,
+    "Drugs": 38,
+    "Alcohol": 1.36
+  },
+  {
+    "STATENAME": "Vermont",
+    "STATE": 50,
+    "Forest": 81.5,
+    "Temp": 42.9,
+    "Elevation": "1,000",
+    "Rain": 42.7,
+    "Drugs": 66.2,
+    "Alcohol": 3
+  },
+  {
+    "STATENAME": "Virginia",
+    "STATE": 51,
+    "Forest": 66.7,
+    "Temp": 55.1,
+    "Elevation": 950,
+    "Rain": 44.3,
+    "Drugs": 52.9,
+    "Alcohol": 2.1
+  },
+  {
+    "STATENAME": "Washington",
+    "STATE": 53,
+    "Forest": 47.2,
+    "Temp": 48.3,
+    "Elevation": "1,700",
+    "Rain": 38.4,
+    "Drugs": 60.2,
+    "Alcohol": 2.24
+  },
+  {
+    "STATENAME": "West Virginia",
+    "STATE": 54,
+    "Forest": 81.4,
+    "Temp": 51.8,
+    "Elevation": "1,500",
+    "Rain": 45.2,
+    "Drugs": 47.6,
+    "Alcohol": 1.8
+  },
+  {
+    "STATENAME": "Wisconsin",
+    "STATE": 55,
+    "Forest": 47.7,
+    "Temp": 43.1,
+    "Elevation": "1,050",
+    "Rain": 32.6,
+    "Drugs": 56.3,
+    "Alcohol": 3
+  },
+  {
+    "STATENAME": "Wyoming",
+    "STATE": 56,
+    "Forest": 14.5,
+    "Temp": 42,
+    "Elevation": "6,700",
+    "Rain": 12.9,
+    "Drugs": 57.9,
+    "Alcohol": 2.66
+  }
+]
