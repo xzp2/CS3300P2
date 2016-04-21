@@ -1,38 +1,54 @@
-
-<!DOCTYPE html>
-<meta charset="utf-8">
-<title>D3.js US Map with Zoom to State and Click on County</title>
+<html>
+<head>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="http://d3js.org/topojson.v1.min.js"></script>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 <style>
+
+body{
+  background: #222;
+}
+
 .background {
-  fill: #eee;
+  fill: #222;
 }
 
 #states {
-  fill: #333;
+  fill: #eee;
 }
 
 #state-borders {
   fill: none;
-  stroke: #fff;
+  stroke: #999;
   stroke-width: 1.5px;
 }
-.county-boundary {
-  fill: #aaa;
-  stroke: #fff;
-  stroke-width: .5px;
+
+.state:hover{
+  fill:#999;
 }
-.county-boundary:hover,
-.state:hover {
-  fill: green;
+
+.tooltip {
+  position: absolute;
+  text-align: center;
+  width: 60px;
+  height: 12px;
+  padding: 8px;
+  margin-top: -20px;
+  font: 10px 'Open Sans';
+  background: #ea9905;
+  outline: 1px solid #b27101;
+  pointer-events: none;
 }
+
 </style>
+</head>
 <body>
-<script src="http://d3js.org/d3.v3.min.js"></script>
-<script src="http://d3js.org/topojson.v1.min.js"></script>
 <script>
 
-var width = 860,
-    height = 500,
+var names;
+
+var width = 900,
+    height = 600,
     active = d3.select(null);
 
 var projection = d3.geo.albersUsa()
@@ -49,66 +65,39 @@ var svg = d3.select("body").append("svg")
 svg.append("rect")
     .attr("class", "background")
     .attr("width", width)
-    .attr("height", height)
-    .on("click", stateClicked);
+    .attr("height", height);
 
 var g = svg.append("g");
 
-d3.json("us.json", function(error, us) {
+var div = d3.select('body').append('div')
+            .attr('class', 'tooltip');
 
- g.append("g")
-      .attr("id", "counties")
-    .selectAll("path")
-      .data(topojson.feature(us, us.objects.counties).features)
-    .enter().append("path")
-  .attr("d", path)
-  .attr("class", "county-boundary");
+
+d3.json("uswstates.json", function(error, us) {
 
   g.append("g")
-      .attr("id", "states")
-    .selectAll("path")
-      .data(topojson.feature(us, us.objects.states).features)
-    .enter().append("path")
+  .attr("id", "states")
+  .selectAll("path")
+  .data(json.features)
+  .enter().append("path")
   .attr("d", path)
   .attr("class", "state")
-      .on("click", stateClicked);
-
+  .on("mouseover", function(d) {
+    div.transition().duration(200).style("opacity", .9);
+    var mouse = d3.mouse(svg.node()).map(function(d) {return parseInt(d);});
+    div.classed('hidden', false)
+    .attr('style', 'left:' + (mouse[0] + 15) + 'px; top:' + (mouse[1] - 35) + 'px')
+    .html(names[d.properties.name]);
+    })
+  .on("mouseout", function(d) {
+    div.classed('hidden', true);
+    });
 
   g.append("path")
       .datum(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; }))
       .attr("id", "state-borders")
       .attr("d", path);
 });
-
-
-function stateClicked(d) {
-  if (active.node() === this) return reset();
-  active.classed("active", false);
-  active = d3.select(this).classed("active", true);
-
-  var bounds = path.bounds(d),
-      dx = bounds[1][0] - bounds[0][0],
-      dy = bounds[1][1] - bounds[0][1],
-      x = (bounds[0][0] + bounds[1][0]) / 2,
-      y = (bounds[0][1] + bounds[1][1]) / 2,
-      scale = .8 / Math.max(dx / width, dy / height),
-      translate = [width / 2 - scale * x, height / 2 - scale * y];
-
-  g.transition()
-      .duration(750)
-      .style("stroke-width", 1.5 / scale + "px")
-      .attr("transform", "translate(" + translate + ")scale(" + scale + ")");
-}
-
-function reset() {
-  active.classed("active", false);
-  active = d3.select(null);
-
-  g.transition()
-      .duration(750)
-      .style("stroke-width", "1.5px")
-      .attr("transform", "");
-}
 
 
 </script>
