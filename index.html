@@ -62,7 +62,7 @@ div.tooltip {
 </style>
 </head>
 <body>
-  <h1>Why Do People See Bigfoot?</h1>
+  <h1>The Bigfoot Phenomenon</h1>
   <h2>debunking popular myths or something</h2>
 <script>
 
@@ -90,9 +90,9 @@ svg.append("rect")
 
 var g = svg.append("g");
 
-var div = d3.select('body').append('div')
-            .attr('class', 'tooltip');
-
+var hover = d3.select('body').append('div')
+            .attr('class', 'tooltip')
+            .style('opacity', 0);
 
 d3.json("us.json", function(error, us) {
 
@@ -104,14 +104,14 @@ d3.json("us.json", function(error, us) {
   .attr("d", path)
   .attr("class", "state")
   .on("mousemove", function(d) {
-    div.transition().duration(200).style("opacity", .9);
-    var mouse = d3.mouse(svg.node()).map(function(d) {return parseInt(d);});
-    div.classed('hidden', false)
-    .attr('style', 'left:' + (mouse[0]) + 'px; top:' + (mouse[1]) + 'px')
+    hover.style("opacity", .9);
+    hover.classed('hidden', false)
+    .style("left", (d3.event.pageX) + "px")
+    .style("top", (d3.event.pageY - 25) + "px")
     .html(d.id);
     })
-  .on("mouseout", function(d) {
-    div.classed('hidden', true);
+  .on("mouseout", function() {
+    hover.attr("style", "opacity:0");
     });
 
   g.append("path")
