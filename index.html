@@ -3,14 +3,34 @@
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script src="http://d3js.org/topojson.v1.min.js"></script>
 <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Amatic+SC' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Josefin+Slab' rel='stylesheet' type='text/css'>
 <style>
 
 body{
-  background: #222;
+  background: #333;
+}
+
+h1 {
+  color: #85ce18;
+  font: 80px 'Amatic SC';
+  /*text-transform: uppercase;*/
+  font-weight:bold;
+  text-align: center;
+}
+
+h2 {
+  text-align:center;
+  color: #cef424;
+  margin-top:-45px;
+  text-transform: uppercase;
+  font: 25px 'Josefin Slab';
+  font-weight:bold;
 }
 
 .background {
-  fill: #222;
+  fill: #333;
 }
 
 #states {
@@ -19,15 +39,15 @@ body{
 
 #state-borders {
   fill: none;
-  stroke: #999;
+  stroke: #aaa;
   stroke-width: 1.5px;
 }
 
 .state:hover{
-  fill:#999;
+  fill: #111;
 }
 
-.tooltip {
+div.tooltip {
   position: absolute;
   text-align: center;
   width: 60px;
@@ -37,12 +57,13 @@ body{
   font: 10px 'Open Sans';
   background: #ea9905;
   outline: 1px solid #b27101;
-  pointer-events: none;
 }
 
 </style>
 </head>
 <body>
+  <h1>Why Do People See Bigfoot?</h1>
+  <h2>debunking popular myths or something</h2>
 <script>
 
 var names;
@@ -82,11 +103,11 @@ d3.json("us.json", function(error, us) {
   .enter().append("path")
   .attr("d", path)
   .attr("class", "state")
-  .on("mouseover", function(d) {
+  .on("mousemove", function(d) {
     div.transition().duration(200).style("opacity", .9);
     var mouse = d3.mouse(svg.node()).map(function(d) {return parseInt(d);});
     div.classed('hidden', false)
-    .attr('style', 'left:' + (mouse[0] + 15) + 'px; top:' + (mouse[1] - 35) + 'px')
+    .attr('style', 'left:' + (mouse[0]) + 'px; top:' + (mouse[1]) + 'px')
     .html(d.id);
     })
   .on("mouseout", function(d) {
