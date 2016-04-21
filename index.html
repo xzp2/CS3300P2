@@ -73,12 +73,12 @@ var div = d3.select('body').append('div')
             .attr('class', 'tooltip');
 
 
-d3.json("uswstates.json", function(error, us) {
+d3.json("us.json", function(error, us) {
 
   g.append("g")
   .attr("id", "states")
   .selectAll("path")
-  .data(json.features)
+  .data(topojson.feature(us, us.objects.states).features)
   .enter().append("path")
   .attr("d", path)
   .attr("class", "state")
@@ -87,7 +87,7 @@ d3.json("uswstates.json", function(error, us) {
     var mouse = d3.mouse(svg.node()).map(function(d) {return parseInt(d);});
     div.classed('hidden', false)
     .attr('style', 'left:' + (mouse[0] + 15) + 'px; top:' + (mouse[1] - 35) + 'px')
-    .html(names[d.properties.name]);
+    .html(d.id);
     })
   .on("mouseout", function(d) {
     div.classed('hidden', true);
