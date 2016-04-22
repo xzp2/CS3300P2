@@ -7,11 +7,9 @@
 <link href='http://fonts.googleapis.com/css?family=Amatic+SC' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Josefin+Slab' rel='stylesheet' type='text/css'>
 <style>
-
 body{
   background: #333;
 }
-
 h1 {
   color: #85ce18;
   font: 80px 'Amatic SC';
@@ -19,7 +17,6 @@ h1 {
   font-weight:bold;
   text-align: center;
 }
-
 h2 {
   text-align:center;
   color: #cef424;
@@ -28,25 +25,20 @@ h2 {
   font: 25px 'Josefin Slab';
   font-weight:bold;
 }
-
 .background {
   fill: #333;
 }
-
 #states {
   fill: #eee;
 }
-
 #state-borders {
   fill: none;
   stroke: #aaa;
   stroke-width: 1.5px;
 }
-
 .state:hover{
   fill: #111;
 }
-
 div.tooltip {
   position: absolute;
   text-align: center;
@@ -54,48 +46,38 @@ div.tooltip {
   height: 12px;
   padding: 8px;
   margin-top: -20px;
-  font: 10px 'Open Sans';
+  font: 20px 'Open Sans';
   background: #ea9905;
   outline: 1px solid #b27101;
 }
-
 </style>
 </head>
 <body>
   <h1>The Bigfoot Phenomenon</h1>
   <h2>debunking popular myths or something</h2>
 <script>
-
 var names;
-
 var width = 900,
     height = 600,
     active = d3.select(null);
-
 var projection = d3.geo.albersUsa()
     .scale(1070)
     .translate([width / 2, height / 2]);
-
 var path = d3.geo.path()
     .projection(projection);
-
 var svg = d3.select("body").append("svg")
     .attr("width", width)
     .attr("height", height);
-
 svg.append("rect")
     .attr("class", "background")
     .attr("width", width)
     .attr("height", height);
-
 var g = svg.append("g");
-
 var hover = d3.select('body').append('div')
             .attr('class', 'tooltip')
             .style('opacity', 0);
-
 d3.json("us.json", function(error, us) {
-
+  names = us;
   g.append("g")
   .attr("id", "states")
   .selectAll("path")
@@ -106,21 +88,31 @@ d3.json("us.json", function(error, us) {
   .on("mousemove", function(d) {
     hover.style("opacity", .9);
     hover.classed('hidden', false)
-    .style("left", (d3.event.pageX) + "px")
-    .style("top", (d3.event.pageY - 25) + "px")
-    .html(d.id);
+    //.style("left", (d3.event.pageX) + "px"  )
+    //.style("top", (d3.event.pageY - 25) + "px")
+    .style("left", "65%")
+    .style("top", "30%")
+    .style("height", "60%")
+    .style("width", "25%")
+    .html(
+      "<b>State:</b> " + d.properties.stateName + 
+      "<br/><b>Number of Sightings:</b> " + d.properties.numSight + 
+      "<br/><b>Most recent report:</b> " + d.properties.mostRecent + 
+      "<br/> <br/> <u>Demographics</u><br/> <br/><b>Population:</b> " + d.properties.Pop + 
+      "<br/><b>Avg. Annual Temp. (F):</b> " + d.properties.Temp + 
+      "<br/><b>Avg. Elevation:</b> " + d.properties.Elev + 
+      "<br/><b>Avg. Rainfall:</b> " + d.properties.Rain + 
+      "<br/><b>Avg. Forest Cover:</b> " + d.properties.Forest + 
+      "<br/><b>Drug Usage:</b> " + d.properties.Drug + 
+      "<br/><b>Alcohol Usage:</b> " + d.properties.Alcohol + 
+      "<br/><b>Percent Urban Area:</b> " + d.properties.urbArea+ "");  
     })
   .on("mouseout", function() {
     hover.attr("style", "opacity:0");
     });
-
   g.append("path")
       .datum(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; }))
       .attr("id", "state-borders")
       .attr("d", path);
 });
-
-
 </script>
-
-
