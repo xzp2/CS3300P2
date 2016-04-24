@@ -76,6 +76,7 @@ div.tooltip {
 <form class="eight"><input type="button" value="% Urban Area" onclick="setMap('urban');"></input></form>
 <script>
 var names;
+var map;
 var width = 900,
     height = 600,
     active = d3.select(null);
@@ -97,7 +98,7 @@ var hover = d3.select('body').append('div')
             .style('opacity', 0);
 d3.json("us.json", function(error, us) {
   names = us;
-  g.append("g")
+  map = g.append("g")
   .attr("id", "states")
   .selectAll("path")
   .data(topojson.feature(us, us.objects.states).features)
@@ -133,23 +134,8 @@ d3.json("us.json", function(error, us) {
       .datum(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; }))
       .attr("id", "state-borders")
       .attr("d", path);
+
 });
-
-function reset(){
-  d3.select("svg").remove();
-
-  svg = d3.select("body").append("svg")
-    .attr("width", width)
-    .attr("height", height);
-  svg.append("rect")
-    .attr("class", "background")
-    .attr("width", width)
-    .attr("height", height);
-  g = svg.append("g");
-  hover = d3.select('body').append('div')
-    .attr('class', 'tooltip')
-    .style('opacity', 0);
-}
 
 function getColor(type, val){
   if(type=="pop"){
@@ -189,16 +175,8 @@ function getColor(type, val){
 
 function setMap(type){
   
-  reset();
   d3.json("us.json", function(error, us) {
-  names = us;
-  g.append("g")
-  .attr("id", "states")
-  .selectAll("path")
-  .data(topojson.feature(us, us.objects.states).features)
-  .enter().append("path")
-  .attr("d", path)
-  .attr("fill",function(d){
+    map.style("fill",function(d){
     if(type=='pop') {return getColor(type,d.properties.Pop);}
     else if(type=='temp'){return getColor(type,d.properties.Temp);}
     else if(type=='elev'){return getColor(type,d.properties.Elev);}
@@ -208,38 +186,8 @@ function setMap(type){
     else if(type=='alcohol'){return getColor(type,d.properties.Alcohol);}
     else if(type=='urban'){return getColor(type,d.properties.urbArea);}
     else{return "#eee";}
-  })
-  .attr("class", "state")
-  .on("mousemove", function(d) {
-    hover.style("opacity", .9);
-    hover.classed('hidden', false)
-    //.style("left", (d3.event.pageX) + "px"  )
-    //.style("top", (d3.event.pageY - 25) + "px")
-    .style("left", "65%")
-    .style("top", "30%")
-    .style("height", "60%")
-    .style("width", "25%")
-    .html(
-      "<b>State:</b> " + d.properties.stateName + 
-      "<br/><b>Number of Sightings:</b> " + d.properties.numSight + 
-      "<br/><b>Most recent report:</b> " + d.properties.mostRecent + 
-      "<br/> <br/> <u>Demographics</u><br/> <br/><b>Population:</b> " + d.properties.Pop + 
-      "<br/><b>Avg. Annual Temp. (F):</b> " + d.properties.Temp + 
-      "<br/><b>Avg. Elevation:</b> " + d.properties.Elev + 
-      "<br/><b>Avg. Rainfall:</b> " + d.properties.Rain + 
-      "<br/><b>Avg. Forest Cover:</b> " + d.properties.Forest + 
-      "<br/><b>Drug Usage:</b> " + d.properties.Drug + 
-      "<br/><b>Alcohol Usage:</b> " + d.properties.Alcohol + 
-      "<br/><b>Percent Urban Area:</b> " + d.properties.urbArea+ "");  
-    })
-  .on("mouseout", function() {
-    hover.attr("style", "opacity:0");
-    });
-  g.append("path")
-      .datum(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; }))
-      .attr("id", "state-borders")
-      .attr("d", path);
-});
+  });
+  });
 }
 
 
