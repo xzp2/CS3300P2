@@ -235,7 +235,8 @@ function getColor(type, val){
 function setMap(type){
   
   d3.json("us.json", function(error, us) {
-    map.style("fill",function(d){
+    map.style("-webkit-transition-duration", "1s").style("transition-duration", "1s;")
+    .style("fill",function(d){
     if(type=='pop') {return getColor(type,d.properties.Pop);}
     else if(type=='temp'){return getColor(type,d.properties.Temp);}
     else if(type=='elev'){return getColor(type,d.properties.Elev);}
