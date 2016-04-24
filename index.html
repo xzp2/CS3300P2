@@ -26,8 +26,28 @@ h2 {
   font: 25px 'Josefin Slab';
   font-weight:bold;
 }
+input{
+  float:right;
+  margin-right: 50px;
+  background-color: #ffffff;
+  border: none;
+  color: black;
+  width:350px;
+  height:50px;
+  padding: 15px 32px;
+  text-align: center;
+  display: inline-block;
+  -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+}
+form{
+  padding-top: 40px;
+}
 .background {
   fill: #333;
+}
+.buttons{
+  margin-left: 1000px;
 }
 #states {
   fill: #eee;
@@ -39,6 +59,43 @@ h2 {
 }
 .state:hover{
   fill: #111;
+}
+
+#svgMap{
+  float:left;
+}
+
+.one:hover{
+  background-color: #ff0000; 
+  color: white;
+}
+.two:hover{
+  background-color: #551a8b; 
+  color: white;
+}
+.three:hover{
+  background-color: #5E2612; 
+  color: white;
+}
+.four:hover{
+  background-color: #0000ff; 
+  color: white;
+}
+.five:hover{
+  background-color: #2E8B57; 
+  color: white;
+}
+.six:hover{
+  background-color: #8B008B; 
+  color: white;
+}
+.seven:hover{
+  background-color: #9C661F; 
+  color: white;
+}
+.eight:hover{
+  background-color: #8E8E38; 
+  color: white;
 }
 div.tooltip {
   position: absolute;
@@ -53,13 +110,35 @@ div.tooltip {
   border-radius: 15px;
   overflow:auto;
 }
+
 </style>
 </head>
 <body>
   <h1>The Bigfoot Phenomenon</h1>
   <h2>debunking popular myths or something</h2>
+<div class="container">
+  <div id="svgMap"></div>
+  <div class="buttons">
+    <form ><input class="one" type="button" value="Population" onclick="setMap('pop');"></input></form>
+
+    <form ><input class="two" type="button" value="Average Temperature" onclick="setMap('temp');"></input></form>
+
+    <form ><input class="three" type="button" value="Mean Elevation" onclick="setMap('elev');"></input></form>
+
+    <form ><input class="four" type="button" value="Average Rainfall" onclick="setMap('rain');"></input></form>
+
+    <form ><input class="five" type="button" value="% Forest Cover" onclick="setMap('forest');"></input></form>
+
+    <form ><input class="six" type="button" value="% of Population That Has Used Marijuana At Least Once" onclick="setMap('drug');"></input></form>
+
+    <form ><input class="seven" type="button" value="Something Alcohol" onclick="setMap('alcohol');"></input></form>
+
+    <form ><input class="eight" type="button" value="% Urban Area" onclick="setMap('urban');"></input></form>
+  </div>
+</div>
 <script>
 var names;
+var map;
 var width = 900,
     height = 600,
     active = d3.select(null);
@@ -68,7 +147,7 @@ var projection = d3.geo.albersUsa()
     .translate([width / 2, height / 2]);
 var path = d3.geo.path()
     .projection(projection);
-var svg = d3.select("body").append("svg")
+var svg = d3.select("#svgMap").append("svg")
     .attr("width", width)
     .attr("height", height);
 svg.append("rect")
@@ -81,7 +160,7 @@ var hover = d3.select('body').append('div')
             .style('opacity', 0);
 d3.json("us.json", function(error, us) {
   names = us;
-  g.append("g")
+  map = g.append("g")
   .attr("id", "states")
   .selectAll("path")
   .data(topojson.feature(us, us.objects.states).features)
@@ -117,5 +196,64 @@ d3.json("us.json", function(error, us) {
       .datum(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; }))
       .attr("id", "state-borders")
       .attr("d", path);
+
 });
+
+function getColor(type, val){
+  if(type=="pop"){
+    var colorScale = d3.scale.linear().domain([400000, 40000000]).range(["#ffffff", "#ff0000"]);
+    return colorScale(val);
+  }
+  else if(type=="temp"){
+    var colorScale = d3.scale.linear().domain([25, 70]).range(["#0000ff", "#ff0000"]);
+    return colorScale(val);
+  }
+  else if(type=="elev"){
+    var colorScale = d3.scale.linear().domain([50, 7000]).range(["#F4A460", "#5E2612"]);
+    return colorScale(val);
+  }
+  else if(type=="rain"){
+    var colorScale = d3.scale.linear().domain([5, 65]).range(["#ffffff", "#0000ff"]);
+    return colorScale(val);
+  }
+  else if(type=="forest"){
+    var colorScale = d3.scale.linear().domain([10, 80]).range(["#ffffff", "#2E8B57"]);
+    return colorScale(val);
+  }
+  else if(type=="drug"){
+    var colorScale = d3.scale.linear().domain([35, 70]).range(["#ffffff", "#8B008B"]);
+    return colorScale(val);
+  }
+  else if(type=="alcohol"){
+    var colorScale = d3.scale.linear().domain([1, 4]).range(["#ffffff", "#9C661F"]);
+    return colorScale(val);
+  }
+  else if(type=="urban"){
+    var colorScale = d3.scale.linear().domain([0, 40]).range(["#ffffff", "#8E8E38"]);
+    return colorScale(val);
+  }
+
+}
+
+function setMap(type){
+  
+  d3.json("us.json", function(error, us) {
+    map.style("-webkit-transition-duration", "1s").style("transition-duration", "1s;")
+    .style("fill",function(d){
+    if(type=='pop') {return getColor(type,d.properties.Pop);}
+    else if(type=='temp'){return getColor(type,d.properties.Temp);}
+    else if(type=='elev'){return getColor(type,d.properties.Elev);}
+    else if(type=='rain'){return getColor(type,d.properties.Rain);}
+    else if(type=='forest'){return getColor(type,d.properties.Forest);}
+    else if(type=='drug'){return getColor(type,d.properties.Drug);}
+    else if(type=='alcohol'){return getColor(type,d.properties.Alcohol);}
+    else if(type=='urban'){return getColor(type,d.properties.urbArea);}
+    else{return "#eee";}
+  });
+  });
+}
+
+
 </script>
+</body>
+</html>
