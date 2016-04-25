@@ -9,6 +9,7 @@
 <style>
 body{
   background: #333;
+  overflow:hidden;
 }
 h1 {
   color: #85ce18;
@@ -59,11 +60,9 @@ form{
 .state:hover{
   fill: #111;
 }
-
 #svgMap{
   float:left;
 }
-
 .one:hover{
   background-color: #ff0000; 
   color: white;
@@ -103,11 +102,10 @@ div.tooltip {
   height: 12px;
   padding: 8px;
   margin-top: -20px;
-  font: 20px 'Open Sans';
+  font: 10px 'Open Sans';
   background: #ea9905;
   outline: 1px solid #b27101;
 }
-
 </style>
 </head>
 <body>
@@ -167,12 +165,10 @@ d3.json("us.json", function(error, us) {
   .on("mousemove", function(d) {
     hover.style("opacity", .9);
     hover.classed('hidden', false)
-    //.style("left", (d3.event.pageX) + "px"  )
-    //.style("top", (d3.event.pageY - 25) + "px")
-    .style("left", "65%")
-    .style("top", "30%")
-    .style("height", "60%")
-    .style("width", "25%")
+    .style("left", (d3.event.pageX + 60) + "px"  )
+    .style("top", (d3.event.pageY - 220) + "px")
+    .style("height", "27%")
+    .style("width", "13%")
     .html(
       "<b>State:</b> " + d.properties.stateName + 
       "<br/><b>Number of Sightings:</b> " + d.properties.numSight + 
@@ -193,9 +189,7 @@ d3.json("us.json", function(error, us) {
       .datum(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; }))
       .attr("id", "state-borders")
       .attr("d", path);
-
 });
-
 function getColor(type, val){
   if(type=="pop"){
     var colorScale = d3.scale.linear().domain([400000, 40000000]).range(["#ffffff", "#ff0000"]);
@@ -229,9 +223,7 @@ function getColor(type, val){
     var colorScale = d3.scale.linear().domain([0, 40]).range(["#ffffff", "#8E8E38"]);
     return colorScale(val);
   }
-
 }
-
 function setMap(type){
   
   d3.json("us.json", function(error, us) {
@@ -249,8 +241,6 @@ function setMap(type){
   });
   });
 }
-
-
 </script>
 </body>
 </html>
