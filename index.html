@@ -8,23 +8,26 @@
 <link href='http://fonts.googleapis.com/css?family=Josefin+Slab' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
 <style>
+html{
+  overflow:hidden;
+}
 body{
   background: #333;
-  overflow:hidden;
 }
 h1 {
   color: #85ce18;
-  font: 80px 'Amatic SC';
+  font: 60px 'Amatic SC';
   /*text-transform: uppercase;*/
   font-weight:bold;
   text-align: center;
+  margin-top:-20px;
 }
 h2 {
   text-align:center;
   color: #cef424;
   margin-top:-45px;
   text-transform: uppercase;
-  font: 25px 'Josefin Slab';
+  font: 20px 'Josefin Slab';
   font-weight:bold;
 }
 input{
@@ -63,6 +66,9 @@ form{
 }
 #svgMap{
   float:left;
+}
+.container{
+  margin-top:-50px;
 }
 .one:hover{
   background-color: #ff0000; 
@@ -154,7 +160,7 @@ svg.append("rect")
     .attr("width", width)
     .attr("height", height);
 var g = svg.append("g");
-var hover = d3.select('body').append('div')
+var hover = d3.select("body").append('div')
             .attr('class', 'tooltip')
             .style('opacity', 0);
 d3.json("us.json", function(error, us) {
