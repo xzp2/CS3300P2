@@ -31,6 +31,8 @@ h2 {
   font-weight:bold;
 }
 input{
+  font: 13px 'Varela Round';
+  border-radius:20px;
   float:right;
   margin-right: 50px;
   background-color: #ffffff;
@@ -52,6 +54,7 @@ form{
 }
 .buttons{
   margin-left: 1000px;
+  margin-top:80px;
 }
 #states {
   fill: #eee;
@@ -68,7 +71,7 @@ form{
   float:left;
 }
 .container{
-  margin-top:-50px;
+  margin-top:-70px;
 }
 .one:hover{
   background-color: #ff0000; 
@@ -116,6 +119,12 @@ div.tooltip {
   background: #ea9905;
   border-radius: 15px;
 }
+
+.axis {
+  font: 10px sans-serif;
+  color: white;
+}
+
 </style>
 </head>
 <body>
@@ -124,21 +133,24 @@ div.tooltip {
 <div class="container">
   <div id="svgMap"></div>
   <div class="buttons">
-    <form ><input class="one" type="button" value="Population" onclick="setMap('pop');"></input></form>
 
-    <form ><input class="two" type="button" value="Average Temperature" onclick="setMap('temp');"></input></form>
+    <div id="colorKey"></div>
 
-    <form ><input class="three" type="button" value="Mean Elevation" onclick="setMap('elev');"></input></form>
+    <form ><input class="one" type="button" value="Population" onclick="setMap('pop'); setScale('pop');"></input></form>
 
-    <form ><input class="four" type="button" value="Average Rainfall" onclick="setMap('rain');"></input></form>
+    <form ><input class="two" type="button" value="Average Temperature" onclick="setMap('temp'); setScale('temp');"></input></form>
 
-    <form ><input class="five" type="button" value="% Forest Cover" onclick="setMap('forest');"></input></form>
+    <form ><input class="three" type="button" value="Mean Elevation" onclick="setMap('elev'); setScale('elev');"></input></form>
 
-    <form ><input class="six" type="button" value="% of Population That Has Used Marijuana At Least Once" onclick="setMap('drug');"></input></form>
+    <form ><input class="four" type="button" value="Average Rainfall" onclick="setMap('rain'); setScale('rain');"></input></form>
 
-    <form ><input class="seven" type="button" value="Alcohol Consumption (gallons per capita)" onclick="setMap('alcohol');"></input></form>
+    <form ><input class="five" type="button" value="% Forest Cover" onclick="setMap('forest'); setScale('forest');"></input></form>
 
-    <form ><input class="eight" type="button" value="% Urban Area" onclick="setMap('urban');"></input></form>
+    <form ><input class="six" type="button" value="% Marijuana Users" onclick="setMap('drug'); setScale('drug');"></input></form>
+
+    <form ><input class="seven" type="button" value="Alcohol Consumption (gallons per capita)" onclick="setMap('alcohol'); setScale('alcohol');"></input></form>
+
+    <form ><input class="eight" type="button" value="% Urban Area" onclick="setMap('urban'); setScale('urban');"></input></form>
   </div>
 </div>
 <script>
@@ -200,6 +212,25 @@ d3.json("us.json", function(error, us) {
       .attr("id", "state-borders")
       .attr("d", path);
 });
+
+
+var scale = d3.select("#colorKey").append("svg")
+  .attr("width", 350)
+  .attr("height", 30)
+  .style("margin-left", "-50px")
+  .style("margin-top", "20px")
+  .style("background-color", "#ffffff")
+  .style("border-radius", "15px");
+
+var gradient = scale.append("defs")
+  .append("linearGradient")
+    .attr("id", "gradient")
+    .attr("x1", "0%")
+    .attr("y1", "0%")
+    .attr("x2", "100%")
+    .attr("y2", "0%");
+
+
 function getColor(type, val){
   if(type=="pop"){
     var colorScale = d3.scale.linear().domain([400000, 40000000]).range(["#ffffff", "#ff0000"]);
@@ -250,6 +281,113 @@ function setMap(type){
     else{return "#eee";}
   });
   });
+}
+
+function setScale(type) {
+  if(type=='pop') {
+    gradient.selectAll("stop").remove();
+    gradient.append("stop")
+      .attr("offset", "0%")
+      .attr("stop-color", "#ffffff");
+    gradient.append("stop")
+      .attr("offset", "100%")
+      .attr("stop-color", "#ff0000");
+    scale.append("rect")
+      .attr("width", 350)
+      .attr("height", 30)
+      .style("fill", "url(#gradient)");
+  }
+  else if(type=='temp'){
+    gradient.selectAll("stop").remove();
+    gradient.append("stop")
+      .attr("offset", "0%")
+      .attr("stop-color", "#0000ff");
+    gradient.append("stop")
+      .attr("offset", "100%")
+      .attr("stop-color", "#ff0000");
+    scale.append("rect")
+      .attr("width", 350)
+      .attr("height", 30)
+      .style("fill", "url(#gradient)");
+  }
+  else if(type=='elev'){
+    gradient.selectAll("stop").remove();
+    gradient.append("stop")
+      .attr("offset", "0%")
+      .attr("stop-color", "#F4A460");
+    gradient.append("stop")
+      .attr("offset", "100%")
+      .attr("stop-color", "#5E2612");
+    scale.append("rect")
+      .attr("width", 350)
+      .attr("height", 30)
+      .style("fill", "url(#gradient)");
+  }
+  else if(type=='rain'){
+    gradient.selectAll("stop").remove();
+    gradient.append("stop")
+      .attr("offset", "0%")
+      .attr("stop-color", "#ffffff");
+    gradient.append("stop")
+      .attr("offset", "100%")
+      .attr("stop-color", "#0000ff");
+    scale.append("rect")
+      .attr("width", 350)
+      .attr("height", 30)
+      .style("fill", "url(#gradient)");
+  }
+  else if(type=='forest'){
+    gradient.selectAll("stop").remove();
+    gradient.append("stop")
+      .attr("offset", "0%")
+      .attr("stop-color", "#ffffff");
+    gradient.append("stop")
+      .attr("offset", "100%")
+      .attr("stop-color", "#2E8B57");
+    scale.append("rect")
+      .attr("width", 350)
+      .attr("height", 30)
+      .style("fill", "url(#gradient)");
+  }
+  else if(type=='drug'){
+    gradient.selectAll("stop").remove();
+    gradient.append("stop")
+      .attr("offset", "0%")
+      .attr("stop-color", "#ffffff");
+    gradient.append("stop")
+      .attr("offset", "100%")
+      .attr("stop-color", "#8B008B");
+    scale.append("rect")
+      .attr("width", 350)
+      .attr("height", 30)
+      .style("fill", "url(#gradient)");
+  }
+  else if(type=='alcohol'){
+    gradient.selectAll("stop").remove();
+    gradient.append("stop")
+      .attr("offset", "0%")
+      .attr("stop-color", "#ffffff");
+    gradient.append("stop")
+      .attr("offset", "100%")
+      .attr("stop-color", "#9C661F");
+    scale.append("rect")
+      .attr("width", 350)
+      .attr("height", 30)
+      .style("fill", "url(#gradient)");
+  }
+  else if(type=='urban') {
+    gradient.selectAll("stop").remove();
+    gradient.append("stop")
+      .attr("offset", "0%")
+      .attr("stop-color", "#ffffff");
+    gradient.append("stop")
+      .attr("offset", "100%")
+      .attr("stop-color", "#8E8E38");
+    scale.append("rect")
+      .attr("width", 350)
+      .attr("height", 30)
+      .style("fill", "url(#gradient)");
+  }
 }
 </script>
 </body>
