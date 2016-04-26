@@ -83,9 +83,12 @@ form{
   shape-rendering: crispEdges;
 }
 .axis text {
-  font-family: sans-serif;
-  font-size: 11px;
-  color:white;
+  font-family: 'Varela Round';
+  font-size: 13px;  
+  paint-order: stroke;
+  fill: #ffffff;
+  stroke: #000000;
+  stroke-width:3px;
 }
 .container{
   margin-top:-30px;
@@ -326,7 +329,7 @@ function setScale(type) {
       .style("fill", "url(#gradient)");
     var x = d3.scale.linear()
       .domain([400000, 40000000])
-      .range([10, 305]);
+      .range([15, 293]);
     var axis = d3.svg.axis()
       .orient("top")
       .scale(x)
@@ -336,10 +339,7 @@ function setScale(type) {
       .attr("transform", "translate(15, 28)")
       .call(axis)
       .append("text")
-      .attr("transform", "rotate(0)")
-      .attr("y", 30).attr("dy", ".71em")
-      .style("text-anchor", "end")
-      .text("40000000");
+      .attr("transform", "rotate(0)");
   }
   else if(type=='temp'){
     gradient.selectAll("stop").remove();
@@ -353,6 +353,19 @@ function setScale(type) {
       .attr("width", 350)
       .attr("height", 30)
       .style("fill", "url(#gradient)");
+        var x = d3.scale.linear()
+      .domain([25, 70])
+      .range([0, 320]);
+    var axis = d3.svg.axis()
+      .orient("top")
+      .scale(x)
+      .tickValues([25, 70]);
+    scale.append('g')
+      .attr('class', 'axis')
+      .attr("transform", "translate(15, 28)")
+      .call(axis)
+      .append("text")
+      .attr("transform", "rotate(0)");
   }
   else if(type=='elev'){
     gradient.selectAll("stop").remove();
@@ -366,6 +379,19 @@ function setScale(type) {
       .attr("width", 350)
       .attr("height", 30)
       .style("fill", "url(#gradient)");
+    var x = d3.scale.linear()
+      .domain([50, 7000])
+      .range([0, 310]);
+    var axis = d3.svg.axis()
+      .orient("top")
+      .scale(x)
+      .tickValues([50, 7000]);
+    scale.append('g')
+      .attr('class', 'axis')
+      .attr("transform", "translate(15, 28)")
+      .call(axis)
+      .append("text")
+      .attr("transform", "rotate(0)");
   }
   else if(type=='rain'){
     gradient.selectAll("stop").remove();
@@ -379,6 +405,19 @@ function setScale(type) {
       .attr("width", 350)
       .attr("height", 30)
       .style("fill", "url(#gradient)");
+    var x = d3.scale.linear()
+      .domain([5, 65])
+      .range([-3, 320]);
+    var axis = d3.svg.axis()
+      .orient("top")
+      .scale(x)
+      .tickValues([5, 65]);
+    scale.append('g')
+      .attr('class', 'axis')
+      .attr("transform", "translate(15, 28)")
+      .call(axis)
+      .append("text")
+      .attr("transform", "rotate(0)");
   }
   else if(type=='forest'){
     gradient.selectAll("stop").remove();
@@ -392,6 +431,19 @@ function setScale(type) {
       .attr("width", 350)
       .attr("height", 30)
       .style("fill", "url(#gradient)");
+    var x = d3.scale.linear()
+      .domain([10, 80])
+      .range([0, 320]);
+    var axis = d3.svg.axis()
+      .orient("top")
+      .scale(x)
+      .tickValues([10, 80]);
+    scale.append('g')
+      .attr('class', 'axis')
+      .attr("transform", "translate(15, 28)")
+      .call(axis)
+      .append("text")
+      .attr("transform", "rotate(0)");
   }
   else if(type=='drug'){
     gradient.selectAll("stop").remove();
@@ -405,6 +457,19 @@ function setScale(type) {
       .attr("width", 350)
       .attr("height", 30)
       .style("fill", "url(#gradient)");
+    var x = d3.scale.linear()
+      .domain([35, 70])
+      .range([0, 320]);
+    var axis = d3.svg.axis()
+      .orient("top")
+      .scale(x)
+      .tickValues([35, 70]);
+    scale.append('g')
+      .attr('class', 'axis')
+      .attr("transform", "translate(15, 28)")
+      .call(axis)
+      .append("text")
+      .attr("transform", "rotate(0)");
   }
   else if(type=='alcohol'){
     gradient.selectAll("stop").remove();
@@ -418,6 +483,19 @@ function setScale(type) {
       .attr("width", 350)
       .attr("height", 30)
       .style("fill", "url(#gradient)");
+    var x = d3.scale.linear()
+      .domain([1, 4])
+      .range([0, 320]);
+    var axis = d3.svg.axis()
+      .orient("top")
+      .scale(x)
+      .tickValues([1, 4]);
+    scale.append('g')
+      .attr('class', 'axis')
+      .attr("transform", "translate(15, 28)")
+      .call(axis)
+      .append("text")
+      .attr("transform", "rotate(0)");
   }
   else if(type=='urban') {
     gradient.selectAll("stop").remove();
@@ -431,6 +509,19 @@ function setScale(type) {
       .attr("width", 350)
       .attr("height", 30)
       .style("fill", "url(#gradient)");
+    var x = d3.scale.linear()
+      .domain([1, 40])
+      .range([0, 320]);
+    var axis = d3.svg.axis()
+      .orient("top")
+      .scale(x)
+      .tickValues([1, 40]);
+    scale.append('g')
+      .attr('class', 'axis')
+      .attr("transform", "translate(15, 28)")
+      .call(axis)
+      .append("text")
+      .attr("transform", "rotate(0)");
   }
 }
 </script>
