@@ -9,7 +9,7 @@
 <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
 <style>
 html{
-  overflow:hidden;
+ /* overflow:hidden;*/
 }
 body{
   background: #333;
@@ -60,7 +60,6 @@ form{
 }
 .buttons{
   margin-left: 1000px;
-  margin-top:80px;
 }
 #states {
   fill: #eee;
@@ -72,6 +71,8 @@ form{
 }
 .state:hover{
   fill: #111;
+   -webkit-transition-duration: 1s;
+    transition-duration: 1s;
 }
 #svgMap{
   float:left;
@@ -191,6 +192,7 @@ d3.json("us.json", function(error, us) {
   .attr("d", path)
   .attr("class", "state")
   .on("mousemove", function(d) {
+
     hover.style("opacity", .9);
     hover.classed('hidden', false)
     .style("left", (d3.event.pageX + 60) + "px"  )
@@ -276,16 +278,31 @@ function setMap(type){
   d3.json("us.json", function(error, us) {
     map.style("-webkit-transition-duration", "1s").style("transition-duration", "1s;")
     .style("fill",function(d){
-    if(type=='pop') {return getColor(type,d.properties.Pop);}
-    else if(type=='temp'){return getColor(type,d.properties.Temp);}
-    else if(type=='elev'){return getColor(type,d.properties.Elev);}
-    else if(type=='rain'){return getColor(type,d.properties.Rain);}
-    else if(type=='forest'){return getColor(type,d.properties.Forest);}
-    else if(type=='drug'){return getColor(type,d.properties.Drug);}
-    else if(type=='alcohol'){return getColor(type,d.properties.Alcohol);}
-    else if(type=='urban'){return getColor(type,d.properties.urbArea);}
-    else{return "#eee";}
-  });
+      if(type=='pop') {return getColor(type,d.properties.Pop);}
+      else if(type=='temp'){return getColor(type,d.properties.Temp);}
+      else if(type=='elev'){return getColor(type,d.properties.Elev);}
+      else if(type=='rain'){return getColor(type,d.properties.Rain);}
+      else if(type=='forest'){return getColor(type,d.properties.Forest);}
+      else if(type=='drug'){return getColor(type,d.properties.Drug);}
+      else if(type=='alcohol'){return getColor(type,d.properties.Alcohol);}
+      else if(type=='urban'){return getColor(type,d.properties.urbArea);}
+      else{return "#eee";}
+    })
+    .on("mouseover",function(){
+      d3.select(this).style("fill","#111");
+    })
+    .on("mouseout",function(d){
+      if(type=='pop') {d3.select(this).style("fill",getColor(type,d.properties.Pop));}
+      else if(type=='temp'){d3.select(this).style("fill",getColor(type,d.properties.Temp));}
+      else if(type=='elev'){d3.select(this).style("fill",getColor(type,d.properties.Elev));}
+      else if(type=='rain'){d3.select(this).style("fill",getColor(type,d.properties.Rain));}
+      else if(type=='forest'){d3.select(this).style("fill",getColor(type,d.properties.Forest));}
+      else if(type=='drug'){d3.select(this).style("fill",getColor(type,d.properties.Drug));}
+      else if(type=='alcohol'){d3.select(this).style("fill",getColor(type,d.properties.Alcohol));}
+      else if(type=='urban'){d3.select(this).style("fill",getColor(type,d.properties.urbArea));}
+      else{d3.select(this).style("fill","#eee");}
+      hover.attr("style", "opacity:0");
+    });
   });
 }
 
