@@ -125,11 +125,9 @@ form{
   background-color: #8E8E38; 
   color: white;
 }
-
 u {
   font-size:9pt;
 }
-
 div.tooltip {
   position: absolute;
   text-align: center;
@@ -144,7 +142,6 @@ div.tooltip {
   background: #ea9905;
   border-radius: 15px;
 }
-
 </style>
 </head>
 <body>
@@ -232,7 +229,40 @@ d3.json("us.json", function(error, us) {
       .attr("id", "state-borders")
       .attr("d", path);
 });
-
+d3.json("us.json", function(error, us) {
+  svg.selectAll("circle")
+      .data(topojson.feature(us, us.objects.states).features)
+    .enter().append("circle")
+      .attr("transform", function(d) { return "translate(" + path.centroid(d) + ")"; })
+      .attr("r", function(d) { return (d.properties.numSight / 10); })
+      .attr("stroke", "#000")
+      .attr("fill", "#808080")
+      .attr("opacity", 0.3)
+      .on("mousemove", function(d) {
+      var f = d3.format("0,000");
+      hover.style("opacity", .9);
+      hover.classed('hidden', false)
+      .style("left", (d3.event.pageX + 60) + "px"  )
+      .style("top", (d3.event.pageY - 130) + "px")
+      .style("height", "35%")
+      .style("width", "13%")
+      .html(
+        "<h3>" + d.properties.stateName + "</h3> " + 
+        "<br/><b>Number of Sightings:</b> " + d.properties.numSight + 
+        "<br/><b>Most recent report:</b> " + d.properties.mostRecent + 
+        "<br/> <br/> <u>Demographics</u><br/> <br/><b>Population:</b> " + f(d.properties.Pop) + 
+        "<br/><b>Avg. Annual Temp:</b> " + d.properties.Temp + 
+        "<br/><b>Avg. Elevation:</b> " + f(d.properties.Elev) + 
+        "<br/><b>Avg. Rainfall:</b> " + d.properties.Rain + 
+        "<br/><b>Avg. Forest Cover:</b> " + d.properties.Forest + 
+        "<br/><b>Drug Usage:</b> " + d.properties.Drug + 
+        "<br/><b>Alcohol Usage:</b> " + d.properties.Alcohol + 
+        "<br/><b>Percent Urban Area:</b> " + d.properties.urbArea+ "");  
+      })
+    .on("mouseout", function() {
+      hover.attr("style", "opacity:0");
+      });
+});
 
 var scale = d3.select("#colorKey").append("svg")
   .attr("width", 350)
@@ -241,7 +271,6 @@ var scale = d3.select("#colorKey").append("svg")
   .style("margin-top", "20px")
   .style("background-color", "#eeeeee")
   .style("border-radius", "15px");
-
 var gradient = scale.append("defs")
   .append("linearGradient")
     .attr("id", "gradient")
@@ -249,8 +278,6 @@ var gradient = scale.append("defs")
     .attr("y1", "0%")
     .attr("x2", "100%")
     .attr("y2", "0%");
-
-
 function getColor(type, val){
   if(type=="pop"){
     var colorScale = d3.scale.linear().domain([400000, 40000000]).range(["#fcff7c", "#ff0000"]);
@@ -285,6 +312,7 @@ function getColor(type, val){
     return colorScale(Math.log(val));
   }
 }
+
 function setMap(type){
   
   d3.json("us.json", function(error, us) {
@@ -317,7 +345,6 @@ function setMap(type){
     });
   });
 }
-
 function setScale(type) {
   if(type=='pop') {
     gradient.selectAll("stop").remove();
