@@ -20,22 +20,28 @@ h1 {
   /*text-transform: uppercase;*/
   font-weight:bold;
   text-align: center;
-  margin-top:-20px;
+  margin-top:-10px;
 }
 h2 {
   text-align:center;
   color: #cef424;
-  margin-top:-45px;
+  margin-top:-35px;
   text-transform: uppercase;
   font: 20px 'Josefin Slab';
   font-weight:bold;
+}
+h3 {
+  font:13px 'Varela Round';
+  font-weight:bold;
+  margin:0px;
+  padding:0px;
 }
 input{
   font: 13px 'Varela Round';
   border-radius:20px;
   float:right;
   margin-right: 50px;
-  background-color: #ffffff;
+  background-color: #eeeeee;
   border: none;
   color: black;
   width:350px;
@@ -138,11 +144,11 @@ div.tooltip {
 
     <form ><input class="one" type="button" value="Population" onclick="setMap('pop'); setScale('pop');"></input></form>
 
-    <form ><input class="two" type="button" value="Average Temperature" onclick="setMap('temp'); setScale('temp');"></input></form>
+    <form ><input class="two" type="button" value="Average Temperature (F)" onclick="setMap('temp'); setScale('temp');"></input></form>
 
-    <form ><input class="three" type="button" value="Mean Elevation" onclick="setMap('elev'); setScale('elev');"></input></form>
+    <form ><input class="three" type="button" value="Mean Elevation (unit)" onclick="setMap('elev'); setScale('elev');"></input></form>
 
-    <form ><input class="four" type="button" value="Average Rainfall" onclick="setMap('rain'); setScale('rain');"></input></form>
+    <form ><input class="four" type="button" value="Average Rainfall (unit)" onclick="setMap('rain'); setScale('rain');"></input></form>
 
     <form ><input class="five" type="button" value="% Forest Cover" onclick="setMap('forest'); setScale('forest');"></input></form>
 
@@ -192,7 +198,7 @@ d3.json("us.json", function(error, us) {
     .style("height", "35%")
     .style("width", "13%")
     .html(
-      "<b>State:</b> " + d.properties.stateName + 
+      "<h3>" + d.properties.stateName + "</h3> " + 
       "<br/><b>Number of Sightings:</b> " + d.properties.numSight + 
       "<br/><b>Most recent report:</b> " + d.properties.mostRecent + 
       "<br/> <br/> <u>Demographics</u><br/> <br/><b>Population:</b> " + d.properties.Pop + 
@@ -217,9 +223,9 @@ d3.json("us.json", function(error, us) {
 var scale = d3.select("#colorKey").append("svg")
   .attr("width", 350)
   .attr("height", 30)
-  .style("margin-left", "-50px")
+  .style("margin-left", "-15%")
   .style("margin-top", "20px")
-  .style("background-color", "#ffffff")
+  .style("background-color", "#eeeeee")
   .style("border-radius", "15px");
 
 var gradient = scale.append("defs")
@@ -261,8 +267,8 @@ function getColor(type, val){
     return colorScale(val);
   }
   else if(type=="urban"){
-    var colorScale = d3.scale.linear().domain([0, 40]).range(["#ffffff", "#8E8E38"]);
-    return colorScale(val);
+    var colorScale = d3.scale.log().domain([.01, 40]).range(["#ffffff", "#8E8E38"]);
+    return colorScale(Math.log(val));
   }
 }
 function setMap(type){
