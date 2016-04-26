@@ -9,7 +9,7 @@
 <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
 <style>
 html{
- /* overflow:hidden;*/
+ overflow:hidden;
 }
 body{
   background: #333;
@@ -78,7 +78,7 @@ form{
   float:left;
 }
 .container{
-  margin-top:-70px;
+  margin-top:0px;
 }
 .one:hover{
   background-color: #ff0000; 
@@ -139,9 +139,8 @@ div.tooltip {
   <h2>debunking popular myths or something</h2>
 <div class="container">
   <div id="svgMap"></div>
-  <div class="buttons">
-
-    <div id="colorKey"></div>
+  <div id="colorKey" style="float:right;margin-bottom:-450px;margin-left:1000px;margin-top:-500px"></div>
+  <div class="buttons" style="padding-top:20px">
 
     <form ><input class="one" type="button" value="Population" onclick="setMap('pop'); setScale('pop');"></input></form>
 
@@ -163,8 +162,8 @@ div.tooltip {
 <script>
 var names;
 var map;
-var width = 900,
-    height = 600,
+var width = 800,
+    height = 500,
     active = d3.select(null);
 var projection = d3.geo.albersUsa()
     .scale(1070)
@@ -196,7 +195,7 @@ d3.json("us.json", function(error, us) {
     hover.style("opacity", .9);
     hover.classed('hidden', false)
     .style("left", (d3.event.pageX + 60) + "px"  )
-    .style("top", (d3.event.pageY - 220) + "px")
+    .style("top", (d3.event.pageY - 130) + "px")
     .style("height", "35%")
     .style("width", "13%")
     .html(
