@@ -253,7 +253,7 @@ var gradient = scale.append("defs")
 
 function getColor(type, val){
   if(type=="pop"){
-    var colorScale = d3.scale.linear().domain([400000, 40000000]).range(["#ffffff", "#ff0000"]);
+    var colorScale = d3.scale.linear().domain([400000, 40000000]).range(["#fcff7c", "#ff0000"]);
     return colorScale(val);
   }
   else if(type=="temp"){
@@ -323,7 +323,7 @@ function setScale(type) {
     gradient.selectAll("stop").remove();
     gradient.append("stop")
       .attr("offset", "0%")
-      .attr("stop-color", "#ffffff");
+      .attr("stop-color", "#fcff7c");
     gradient.append("stop")
       .attr("offset", "100%")
       .attr("stop-color", "#ff0000");
@@ -427,7 +427,7 @@ function setScale(type) {
     gradient.selectAll("stop").remove();
     gradient.append("stop")
       .attr("offset", "0%")
-      .attr("stop-color", "#ffffff");
+      .attr("stop-color", "#f5ff72");
     gradient.append("stop")
       .attr("offset", "100%")
       .attr("stop-color", "#2E8B57");
