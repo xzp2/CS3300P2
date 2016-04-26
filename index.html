@@ -71,8 +71,8 @@ form{
 }
 .state:hover{
   fill: #111;
-   -webkit-transition-duration: 1s;
-    transition-duration: 1s;
+   -webkit-transition-duration: 0.6s;
+    transition-duration: 0.6s;
 }
 #svgMap{
   float:left;
@@ -124,6 +124,10 @@ form{
 .eight:hover{
   background-color: #8E8E38; 
   color: white;
+}
+
+u {
+  font-size:9pt;
 }
 
 div.tooltip {
@@ -212,7 +216,7 @@ d3.json("us.json", function(error, us) {
       "<br/><b>Number of Sightings:</b> " + d.properties.numSight + 
       "<br/><b>Most recent report:</b> " + d.properties.mostRecent + 
       "<br/> <br/> <u>Demographics</u><br/> <br/><b>Population:</b> " + f(d.properties.Pop) + 
-      "<br/><b>Avg. Annual Temp. (F):</b> " + d.properties.Temp + 
+      "<br/><b>Avg. Annual Temp:</b> " + d.properties.Temp + 
       "<br/><b>Avg. Elevation:</b> " + f(d.properties.Elev) + 
       "<br/><b>Avg. Rainfall:</b> " + d.properties.Rain + 
       "<br/><b>Avg. Forest Cover:</b> " + d.properties.Forest + 
@@ -257,7 +261,7 @@ function getColor(type, val){
     return colorScale(val);
   }
   else if(type=="elev"){
-    var colorScale = d3.scale.linear().domain([50, 7000]).range(["#F4A460", "#5E2612"]);
+    var colorScale = d3.scale.linear().domain([50, 7000]).range(["#4aba00", "#db1313"]);
     return colorScale(val);
   }
   else if(type=="rain"){
@@ -265,7 +269,7 @@ function getColor(type, val){
     return colorScale(val);
   }
   else if(type=="forest"){
-    var colorScale = d3.scale.linear().domain([10, 80]).range(["#ffffff", "#2E8B57"]);
+    var colorScale = d3.scale.linear().domain([10, 80]).range(["#f5ff72", "#2E8B57"]);
     return colorScale(val);
   }
   else if(type=="drug"){
@@ -273,11 +277,11 @@ function getColor(type, val){
     return colorScale(val);
   }
   else if(type=="alcohol"){
-    var colorScale = d3.scale.linear().domain([1, 4]).range(["#ffffff", "#9C661F"]);
+    var colorScale = d3.scale.linear().domain([1, 4]).range(["#ffffff", "#722702"]);
     return colorScale(val);
   }
   else if(type=="urban"){
-    var colorScale = d3.scale.log().domain([.01, 40]).range(["#ffffff", "#8E8E38"]);
+    var colorScale = d3.scale.log().domain([.01, 40]).range(["#ffffff", "#c90449"]);
     return colorScale(Math.log(val));
   }
 }
@@ -371,10 +375,10 @@ function setScale(type) {
     gradient.selectAll("stop").remove();
     gradient.append("stop")
       .attr("offset", "0%")
-      .attr("stop-color", "#F4A460");
+      .attr("stop-color", "#4aba00");
     gradient.append("stop")
       .attr("offset", "100%")
-      .attr("stop-color", "#5E2612");
+      .attr("stop-color", "#db1313");
     scale.append("rect")
       .attr("width", 350)
       .attr("height", 30)
@@ -478,7 +482,7 @@ function setScale(type) {
       .attr("stop-color", "#ffffff");
     gradient.append("stop")
       .attr("offset", "100%")
-      .attr("stop-color", "#9C661F");
+      .attr("stop-color", "#722702");
     scale.append("rect")
       .attr("width", 350)
       .attr("height", 30)
@@ -504,7 +508,7 @@ function setScale(type) {
       .attr("stop-color", "#ffffff");
     gradient.append("stop")
       .attr("offset", "100%")
-      .attr("stop-color", "#8E8E38");
+      .attr("stop-color", "#c90449");
     scale.append("rect")
       .attr("width", 350)
       .attr("height", 30)
