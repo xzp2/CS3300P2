@@ -152,17 +152,17 @@ div.tooltip {
 
     <form ><input class="two" type="button" value="Average Temperature (F)" onclick="setMap('temp'); setScale('temp');"></input></form>
 
-    <form ><input class="three" type="button" value="Mean Elevation (unit)" onclick="setMap('elev'); setScale('elev');"></input></form>
+    <form ><input class="three" type="button" value="Mean Elevation (Feet)" onclick="setMap('elev'); setScale('elev');"></input></form>
 
-    <form ><input class="four" type="button" value="Average Rainfall (unit)" onclick="setMap('rain'); setScale('rain');"></input></form>
+    <form ><input class="four" type="button" value="Average Rainfall (Inches per Year)" onclick="setMap('rain'); setScale('rain');"></input></form>
 
-    <form ><input class="five" type="button" value="% Forest Cover" onclick="setMap('forest'); setScale('forest');"></input></form>
+    <form ><input class="five" type="button" value="Forest Cover (%)" onclick="setMap('forest'); setScale('forest');"></input></form>
 
-    <form ><input class="six" type="button" value="% Marijuana Users" onclick="setMap('drug'); setScale('drug');"></input></form>
+    <form ><input class="six" type="button" value="Marijuana Users (% Used at least Once)" onclick="setMap('drug'); setScale('drug');"></input></form>
 
-    <form ><input class="seven" type="button" value="Alcohol Consumption (gallons per capita)" onclick="setMap('alcohol'); setScale('alcohol');"></input></form>
+    <form ><input class="seven" type="button" value="Alcohol Consumption (Gallons per Capita)" onclick="setMap('alcohol'); setScale('alcohol');"></input></form>
 
-    <form ><input class="eight" type="button" value="% Urban Area" onclick="setMap('urban'); setScale('urban');"></input></form>
+    <form ><input class="eight" type="button" value="Urban Area (%)" onclick="setMap('urban'); setScale('urban');"></input></form>
   </div>
 </div>
 <script>
@@ -197,7 +197,7 @@ d3.json("us.json", function(error, us) {
   .attr("d", path)
   .attr("class", "state")
   .on("mousemove", function(d) {
-
+    var f = d3.format("0,000");
     hover.style("opacity", .9);
     hover.classed('hidden', false)
     .style("left", (d3.event.pageX + 60) + "px"  )
@@ -208,9 +208,9 @@ d3.json("us.json", function(error, us) {
       "<h3>" + d.properties.stateName + "</h3> " + 
       "<br/><b>Number of Sightings:</b> " + d.properties.numSight + 
       "<br/><b>Most recent report:</b> " + d.properties.mostRecent + 
-      "<br/> <br/> <u>Demographics</u><br/> <br/><b>Population:</b> " + d.properties.Pop + 
+      "<br/> <br/> <u>Demographics</u><br/> <br/><b>Population:</b> " + f(d.properties.Pop) + 
       "<br/><b>Avg. Annual Temp. (F):</b> " + d.properties.Temp + 
-      "<br/><b>Avg. Elevation:</b> " + d.properties.Elev + 
+      "<br/><b>Avg. Elevation:</b> " + f(d.properties.Elev) + 
       "<br/><b>Avg. Rainfall:</b> " + d.properties.Rain + 
       "<br/><b>Avg. Forest Cover:</b> " + d.properties.Forest + 
       "<br/><b>Drug Usage:</b> " + d.properties.Drug + 
