@@ -235,14 +235,14 @@ d3.json("us.json", function(error, us) {
     .enter().append("image")
       .attr("transform", function(d) { 
         if(path.centroid(d) != "NaN,NaN") {
-<<<<<<< HEAD
-        return "translate(" + path.centroid(d) + ")";
-        } })
-      .attr("r", function(d) { return (Math.sqrt(d.properties.numSight)); })
-      .attr("stroke", "#000")
-      .attr("fill", "#808080")
-      .attr("opacity", 0.3)
-=======
+// <<<<<<< HEAD
+//         return "translate(" + path.centroid(d) + ")";
+//         } })
+//       .attr("r", function(d) { return (Math.sqrt(d.properties.numSight)); })
+//       .attr("stroke", "#000")
+//       .attr("fill", "#808080")
+//       .attr("opacity", 0.3)
+// =======
           var c = path.centroid(d);
           var commaIndex = c.indexOf(",");
           var c1 = c[0];
@@ -261,8 +261,8 @@ d3.json("us.json", function(error, us) {
       .attr("width",function(d){
         return Math.sqrt(d.properties.numSight)*2.5;
       })
+      .attr("opacity", 0.7)
       .attr("xlink:href","footprint3.png")
->>>>>>> 2e30ef3e40a571c3207f677e801957b5ca93dc57
       .on("mousemove", function(d) {
 
       var f = d3.format("0,000");
