@@ -236,8 +236,7 @@ d3.json("us.json", function(error, us) {
       .attr("transform", function(d) { 
         if(path.centroid(d) != "NaN,NaN") {
         return "translate(" + path.centroid(d) + ")";
-        }
-         })
+        } })
       .attr("r", function(d) { return (Math.sqrt(d.properties.numSight)); })
       .attr("stroke", "#000")
       .attr("fill", "#808080")
@@ -545,12 +544,12 @@ function setScale(type) {
       .attr("height", 30)
       .style("fill", "url(#gradient)");
     var x = d3.scale.linear()
-      .domain([1, 40])
+      .domain([.01, 40])
       .range([0, 320]);
     var axis = d3.svg.axis()
       .orient("top")
       .scale(x)
-      .tickValues([1, 40]);
+      .tickValues([.01, 40]);
     scale.append('g')
       .attr('class', 'axis')
       .attr("transform", "translate(15, 28)")
