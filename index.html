@@ -233,7 +233,11 @@ d3.json("us.json", function(error, us) {
   svg.selectAll("circle")
       .data(topojson.feature(us, us.objects.states).features)
     .enter().append("circle")
-      .attr("transform", function(d) { return "translate(" + path.centroid(d) + ")"; })
+      .attr("transform", function(d) { 
+        if(path.centroid(d) != "NaN,NaN") {
+        return "translate(" + path.centroid(d) + ")";
+        }
+         })
       .attr("r", function(d) { return (Math.sqrt(d.properties.numSight)); })
       .attr("stroke", "#000")
       .attr("fill", "#808080")
