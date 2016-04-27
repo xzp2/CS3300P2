@@ -235,6 +235,14 @@ d3.json("us.json", function(error, us) {
     .enter().append("image")
       .attr("transform", function(d) { 
         if(path.centroid(d) != "NaN,NaN") {
+// <<<<<<< HEAD
+//         return "translate(" + path.centroid(d) + ")";
+//         } })
+//       .attr("r", function(d) { return (Math.sqrt(d.properties.numSight)); })
+//       .attr("stroke", "#000")
+//       .attr("fill", "#808080")
+//       .attr("opacity", 0.3)
+// =======
           var c = path.centroid(d);
           var commaIndex = c.indexOf(",");
           var c1 = c[0];
@@ -269,6 +277,7 @@ d3.json("us.json", function(error, us) {
       .attr("width",function(d){
         return Math.sqrt(d.properties.numSight)*2.5;
       })
+      .attr("opacity", 0.7)
       .attr("xlink:href","footprint3.png")
       .on("mousemove", function(d) {
 
@@ -574,7 +583,7 @@ function setScale(type) {
       .attr("height", 30)
       .style("fill", "url(#gradient)");
     var x = d3.scale.linear()
-      .domain([1, 40])
+      .domain([.01, 40])
       .range([0, 320]);
     var axis = d3.svg.axis()
       .orient("top")
