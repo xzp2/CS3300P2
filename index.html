@@ -230,19 +230,32 @@ d3.json("us.json", function(error, us) {
       .attr("d", path);
 });
 d3.json("us.json", function(error, us) {
-  svg.selectAll("circle")
+  svg.selectAll("img")
       .data(topojson.feature(us, us.objects.states).features)
-    .enter().append("circle")
+    .enter().append("image")
       .attr("transform", function(d) { 
         if(path.centroid(d) != "NaN,NaN") {
-        return "translate(" + path.centroid(d) + ")";
+          var c = path.centroid(d);
+          var commaIndex = c.indexOf(",");
+          var c1 = c[0];
+          var c2 = c[1];
+          var stringToReturn = (c1-(d.properties.numSight/18)) + "," + (c2-(d.properties.numSight/20));
+          return "translate(" + stringToReturn + ")";
         }
          })
-      .attr("r", function(d) { return (Math.sqrt(d.properties.numSight)); })
-      .attr("stroke", "#000")
-      .attr("fill", "#808080")
-      .attr("opacity", 0.3)
+      // .attr("r", function(d) { return (Math.sqrt(d.properties.numSight)); })
+      // .attr("stroke", "#000")
+      // .attr("fill", "#808080")
+      // .attr("opacity", 0.3)
+      .attr("height", function(d){
+        return Math.sqrt(d.properties.numSight)*2.5;
+      })
+      .attr("width",function(d){
+        return Math.sqrt(d.properties.numSight)*2.5;
+      })
+      .attr("xlink:href","footprint3.png")
       .on("mousemove", function(d) {
+
       var f = d3.format("0,000");
       hover.style("opacity", .9);
       hover.classed('hidden', false)
@@ -550,7 +563,7 @@ function setScale(type) {
     var axis = d3.svg.axis()
       .orient("top")
       .scale(x)
-      .tickValues([1, 40]);
+      .tickValues([.01, 40]);
     scale.append('g')
       .attr('class', 'axis')
       .attr("transform", "translate(15, 28)")
