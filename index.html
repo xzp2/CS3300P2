@@ -361,7 +361,25 @@ d3.json("us.json", function(error, us) {
           var commaIndex = c.indexOf(",");
           var c1 = c[0];
           var c2 = c[1];
-          var stringToReturn = (c1-(d.properties.numSight/18)) + "," + (c2-(d.properties.numSight/20));
+          if(d.properties.stateName == "Massachusetts"){
+            var stringToReturn = (c1-(d.properties.numSight/18)-5) + "," + (c2-(d.properties.numSight/20)-7);
+          }
+          else if(d.properties.stateName == "Florida"){
+            var stringToReturn = (c1-(d.properties.numSight/18)+10) + "," + (c2-(d.properties.numSight/20));
+          }
+          else if(d.properties.stateName == "West Virginia"){
+            var stringToReturn = (c1-(d.properties.numSight/18)-10) + "," + (c2-(d.properties.numSight/20));
+          }
+          else if(d.properties.stateName == "Rhode Island"){
+            var stringToReturn = (c1-(d.properties.numSight/18)-2) + "," + (c2-(d.properties.numSight/20));
+          }
+          else if(d.properties.stateName == "Maryland"){
+            var stringToReturn = (c1-(d.properties.numSight/18)) + "," + (c2-(d.properties.numSight/20)-10);
+          }
+          else{
+            var stringToReturn = (c1-(d.properties.numSight/18)) + "," + (c2-(d.properties.numSight/20));
+          }
+          
           return "translate(" + stringToReturn + ")";
         }
          })
