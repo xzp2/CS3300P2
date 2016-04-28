@@ -1,12 +1,14 @@
 <html>
 <head>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script src="http://d3js.org/topojson.v1.min.js"></script>
 <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Amatic+SC' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Josefin+Slab' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=News+Cycle' rel='stylesheet' type='text/css'>
 <style>
 html{
  overflow:hidden;
@@ -22,6 +24,10 @@ h1 {
   text-align: center;
   margin-top:-10px;
 }
+h1:hover {
+  color:#fcb316;
+  cursor:pointer;
+}
 h2 {
   text-align:center;
   color: #cef424;
@@ -35,6 +41,22 @@ h3 {
   font-weight:bold;
   margin:0px;
   padding:0px;
+}
+h4 {
+  font:40px 'Abel';
+  font-weight:bold;
+  margin-top:10px;
+  text-transform: uppercase;
+  color: #fff;
+  text-align:left;
+  background-color: orange;
+  width:135px;
+  padding:10px;
+  border-radius:15px;
+}
+h4:hover {
+  color:#000;
+  cursor:pointer;
 }
 input{
   font: 13px 'Varela Round';
@@ -76,6 +98,17 @@ form{
 }
 #svgMap{
   float:left;
+}
+#blurb{
+  width:80%;
+  overflow:auto;
+  height:100%;
+  font: 20px 'News Cycle';
+  margin-top:3000px;
+  /*text-align:center;*/
+  color:#fff;
+  margin-left:30px;
+  line-height:28px;
 }
 .axis path, .axis line{
   fill: none;
@@ -169,7 +202,25 @@ div.tooltip {
     <form ><input class="eight" type="button" value="Urban Area (%)" onclick="setMap('urban'); setScale('urban');"></input></form>
   </div>
 </div>
+<div id="blurb">
+  <h4>go back</h4>
+  Bigfoot is one of the most widely known monster tall-tales known to modern-day Americans. Also known as Sasquatch, this ape-like creature is said to wander around parts of North-America, often trying to stay hidden in secluded locations. Due to lack of scientific data on the creature, most people believe Bigfoot to be a fraud or some kind of old wives' tale. However, this doesn't mean that people do not continue to believe in the sightings of the monster even up until today. We conducted a survey asking what state in the USA people thought had the most number of annual Bigfoot sightings and why. This is our visualization of data variables that people commonly associated with Bigfoot and their correlation with the actual number of sightings. <br><br>
+  The <font style="color:orange"><b>footprints</b></font> on the graph represent the number of Bigfoot sightings, and you can see the size key on the right of the map.
+  The <font style="color:orange"><b>buttons</b></font> on the right change the map to correlate with a different variable. 
+  The <font style="color:orange"><b>color key</b></font> above the buttons is the scale for each set of data.
+
+</div>
 <script>
+$('h1').click(function(){
+    $('html,body').animate({
+        scrollTop: $("#blurb").offset().top},
+        500);
+});
+$('h4').click(function(){
+    $('html,body').animate({
+        scrollTop: 0}, 500);
+});
+
 var names;
 var map;
 var width = 800,
@@ -345,6 +396,9 @@ d3.json("us.json", function(error, us) {
             var stringToReturn = (c1-(d.properties.numSight/18)-7) + "," + (c2-(d.properties.numSight/20));
           }
           else if(d.properties.stateName == "Massachusetts"){
+            var stringToReturn = (c1-(d.properties.numSight/18)-5) + "," + (c2-(d.properties.numSight/20)-7);
+          }
+          else if(d.properties.stateName == "Illinois"){
             var stringToReturn = (c1-(d.properties.numSight/18)-5) + "," + (c2-(d.properties.numSight/20)-7);
           }
           else if(d.properties.stateName == "New Hampshire"){
