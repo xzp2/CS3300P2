@@ -98,7 +98,7 @@ form{
   stroke-width: 1.5px;
 }
 .state:hover{
-  fill: #111;
+  fill: #555;
    -webkit-transition-duration: 0.6s;
     transition-duration: 0.6s;
 }
@@ -161,7 +161,7 @@ form{
   color: white;
 }
 .eight:hover{
-  background-color: #8E8E38; 
+  background-color: #c90449; 
   color: white;
 }
 u {
@@ -549,7 +549,7 @@ function setMap(type){
       else{return "#eee";}
     })
     .on("mouseover",function(){
-      d3.select(this).style("fill","#111");
+      d3.select(this).style("fill","#555");
     })
     .on("mouseout",function(d){
       if(type=='pop') {d3.select(this).style("fill",getColor(type,d.properties.Pop));}
