@@ -14,7 +14,7 @@ html{
  overflow:hidden;
 }
 body{
-  background: #808080;
+  background: #333;
 }
 h1 {
   color: #85ce19;
@@ -78,7 +78,7 @@ form{
   padding-top: 40px;
 }
 .background {
-  fill: #808080;
+  fill: #333;
 }
 .buttons{
   margin-left: 1000px;
@@ -248,7 +248,6 @@ var hover = d3.select("body").append('div')
     g.append("image")
       .attr("height", Math.sqrt(600)*2.5)
       .attr("width", Math.sqrt(600)*2.5)
-      .attr("opacity", 0.7)
       .attr("xlink:href","footprint3.png")
       .attr("x", "88.5%")
       .attr("y", "74.25%")
@@ -264,7 +263,6 @@ var hover = d3.select("body").append('div')
     g.append("image")
       .attr("height", Math.sqrt(400)*2.5)
       .attr("width", Math.sqrt(400)*2.5)
-      .attr("opacity", 0.7)
       .attr("xlink:href","footprint3.png")
       .attr("x", "90%")
       .attr("y", "64.25%")
@@ -280,7 +278,6 @@ var hover = d3.select("body").append('div')
     g.append("image")
       .attr("height", Math.sqrt(200)*2.5)
       .attr("width", Math.sqrt(200)*2.5)
-      .attr("opacity", 0.7)
       .attr("xlink:href","footprint3.png")
       .attr("x", "92%")
       .attr("y", "56%")
@@ -296,7 +293,6 @@ var hover = d3.select("body").append('div')
     g.append("image")
       .attr("height", Math.sqrt(100)*2.5)
       .attr("width", Math.sqrt(100)*2.5)
-      .attr("opacity", 0.7)
       .attr("xlink:href","footprint3.png")
       .attr("x", "93.1%")
       .attr("y", "49%")
@@ -312,7 +308,6 @@ var hover = d3.select("body").append('div')
     g.append("image")
       .attr("height", Math.sqrt(50)*2.5)
       .attr("width",Math.sqrt(50)*2.5)
-      .attr("opacity", 0.7)
       .attr("xlink:href","footprint3.png")
       .attr("x", "94%")
       .attr("y", "43%")  
@@ -328,7 +323,6 @@ var hover = d3.select("body").append('div')
     g.append("image")
       .attr("height", Math.sqrt(10)*2.5)
       .attr("width", Math.sqrt(10)*2.5)
-      .attr("opacity", 0.7)
       .attr("xlink:href","footprint3.png")
       .attr("x", "95.25%")
       .attr("y", "37.5%")  
@@ -392,8 +386,23 @@ d3.json("us.json", function(error, us) {
           if(d.properties.stateName == "Massachusetts"){
             var stringToReturn = (c1-(d.properties.numSight/18)-5) + "," + (c2-(d.properties.numSight/20)-7);
           }
+          else if(d.properties.stateName == "California"){
+            var stringToReturn = (c1-(d.properties.numSight/18)-7) + "," + (c2-(d.properties.numSight/20));
+          }
+          else if(d.properties.stateName == "New York"){
+            var stringToReturn = (c1-(d.properties.numSight/18)) + "," + (c2-(d.properties.numSight/20)-7);
+          }
+          else if(d.properties.stateName == "Tennessee"){
+            var stringToReturn = (c1-(d.properties.numSight/18)-10) + "," + (c2-(d.properties.numSight/20)-7);
+          }
           else if(d.properties.stateName == "Illinois"){
             var stringToReturn = (c1-(d.properties.numSight/18)-5) + "," + (c2-(d.properties.numSight/20)-7);
+          }
+          else if(d.properties.stateName == "Kentucky"){
+            var stringToReturn = (c1-(d.properties.numSight/18)-5) + "," + (c2-(d.properties.numSight/20));
+          }
+          else if(d.properties.stateName == "Louisiana"){
+            var stringToReturn = (c1-(d.properties.numSight/18)-10) + "," + (c2-(d.properties.numSight/20)-7);
           }
           else if(d.properties.stateName == "New Hampshire"){
             var stringToReturn = (c1-(d.properties.numSight/18)-5) + "," + (c2-(d.properties.numSight/20));
@@ -428,6 +437,7 @@ d3.json("us.json", function(error, us) {
         return Math.sqrt(d.properties.numSight)*2.7;
       })
       .attr("xlink:href","footprint3.png")
+      .attr("opacity", 0.8)
       .on("mousemove", function(d) {
       var f = d3.format("0,000");
       hover.style("opacity", .9);
