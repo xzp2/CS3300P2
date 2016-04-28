@@ -89,7 +89,7 @@ form{
 .buttons{
   margin-left: 1000px;
 }
-#states {
+.state {
   fill: #eee;
 }
 #state-borders {
@@ -214,7 +214,8 @@ div.tooltip {
   The <font style="color:orange"><b>footprints</b></font> on the graph represent the number of Bigfoot sightings, and you can see the size key on the right of the map.
   The <font style="color:orange"><b>buttons</b></font> on the right change the map to correlate with a different variable. 
   The <font style="color:orange"><b>color key</b></font> above the buttons is the scale for each set of data.
-  <br>
+  <br><br>
+  Go ahead and click the "Go Back" button to get started!<br>
   <h6><span style="font-size:20px">Sources:</span><br>
     Bfro: The Bigfoot Researchers Organization: <a href="http://www.bfro.net/gdb/">http://www.bfro.net/gdb/</a> <br>
     US Census Bereau Urban and Rural Classification - <a href="https://www.census.gov/geo/reference/ua/uafaq.html">https://www.census.gov/geo/reference/ua/uafaq.html</a><br>
@@ -237,7 +238,9 @@ $('h4').click(function(){
         scrollTop: 0}, 500);
 });
 
+
 var names;
+var curType = "none";
 var map;
 var width = 800,
     height = 500,
@@ -360,12 +363,13 @@ var hover = d3.select("body").append('div')
 d3.json("us.json", function(error, us) {
   names = us;
   map = g.append("g")
-  .attr("id", "states")
+  //.attr("id", "states")
   .selectAll("path")
   .data(topojson.feature(us, us.objects.states).features)
   .enter().append("path")
   .attr("d", path)
   .attr("class", "state")
+  .attr("id",function(d){return d.properties.stateName.replace(/ /g,"");})
   .on("mousemove", function(d) {
     var f = d3.format("0,000");
     hover.style("opacity", .9);
@@ -386,11 +390,14 @@ d3.json("us.json", function(error, us) {
       "<br/><b>Drug Usage:</b> " + d.properties.Drug + 
       "<br/><b>Alcohol Usage:</b> " + d.properties.Alcohol + 
       "<br/><b>Percent Urban Area:</b> " + d.properties.urbArea+ "");  
+    d3.select("#"+d.properties.stateName.replace(/ /g,"")).style("fill","#555"); 
     })
-  .on("mouseout", function() {
+  .on("mouseout", function(d) {
+    map.style("-webkit-transition-duration", ".4s").style("transition-duration", ".4s;")
     hover.attr("style", "opacity:0");
+    d3.select("#"+d.properties.stateName.replace(/ /g,"")).style("fill","#eee"); 
     });
-  g.append("path")
+  g.append("path") 
       .datum(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; }))
       .attr("id", "state-borders")
       .attr("d", path);
@@ -461,28 +468,40 @@ d3.json("us.json", function(error, us) {
       .attr("xlink:href","footprint3.png")
       .attr("opacity", 0.8)
       .on("mousemove", function(d) {
-      var f = d3.format("0,000");
-      hover.style("opacity", .9);
-      hover.classed('hidden', false)
-      .style("left", (d3.event.pageX + 60) + "px"  )
-      .style("top", (d3.event.pageY - 130) + "px")
-      .style("height", "35%")
-      .style("width", "13%")
-      .html(
-        "<h3>" + d.properties.stateName + "</h3> " + 
-        "<br/><b>Number of Sightings:</b> " + d.properties.numSight + 
-        "<br/><b>Most recent report:</b> " + d.properties.mostRecent + 
-        "<br/> <br/> <u>Demographics</u><br/> <br/><b>Population:</b> " + f(d.properties.Pop) + 
-        "<br/><b>Avg. Annual Temp:</b> " + d.properties.Temp + 
-        "<br/><b>Avg. Elevation:</b> " + f(d.properties.Elev) + 
-        "<br/><b>Avg. Rainfall:</b> " + d.properties.Rain + 
-        "<br/><b>Avg. Forest Cover:</b> " + d.properties.Forest + 
-        "<br/><b>Drug Usage:</b> " + d.properties.Drug + 
-        "<br/><b>Alcohol Usage:</b> " + d.properties.Alcohol + 
-        "<br/><b>Percent Urban Area:</b> " + d.properties.urbArea+ "");  
-      })
-    .on("mouseout", function() {
+        var f = d3.format("0,000");
+        hover.style("opacity", .9);
+        hover.classed('hidden', false)
+        .style("left", (d3.event.pageX + 60) + "px"  )
+        .style("top", (d3.event.pageY - 130) + "px")
+        .style("height", "35%")
+        .style("width", "13%")
+        .html(
+          "<h3>" + d.properties.stateName + "</h3> " + 
+          "<br/><b>Number of Sightings:</b> " + d.properties.numSight + 
+          "<br/><b>Most recent report:</b> " + d.properties.mostRecent + 
+          "<br/> <br/> <u>Demographics</u><br/> <br/><b>Population:</b> " + f(d.properties.Pop) + 
+          "<br/><b>Avg. Annual Temp:</b> " + d.properties.Temp + 
+          "<br/><b>Avg. Elevation:</b> " + f(d.properties.Elev) + 
+          "<br/><b>Avg. Rainfall:</b> " + d.properties.Rain + 
+          "<br/><b>Avg. Forest Cover:</b> " + d.properties.Forest + 
+          "<br/><b>Drug Usage:</b> " + d.properties.Drug + 
+          "<br/><b>Alcohol Usage:</b> " + d.properties.Alcohol + 
+          "<br/><b>Percent Urban Area:</b> " + d.properties.urbArea+ "");
+        d3.select("#"+d.properties.stateName.replace(/ /g,"")).style("fill","#555");  
+        })
+    .on("mouseout", function(d) {
       hover.attr("style", "opacity:0");
+      d3.select("#"+d.properties.stateName.replace(/ /g,"")).style("fill",function(){
+        if(curType=='pop') {return getColor(curType,d.properties.Pop);}
+        else if(curType=='temp'){return getColor(curType,d.properties.Temp);}
+        else if(curType=='elev'){return getColor(curType,d.properties.Elev);}
+        else if(curType=='rain'){return getColor(curType,d.properties.Rain);}
+        else if(curType=='forest'){return getColor(curType,d.properties.Forest);}
+        else if(curType=='drug'){return getColor(curType,d.properties.Drug);}
+        else if(curType=='alcohol'){return getColor(curType,d.properties.Alcohol);}
+        else if(curType=='urban'){return getColor(curType,d.properties.urbArea);}
+        else{return "#eee";}
+      });  
       });
 });
 var scale = d3.select("#colorKey").append("svg")
@@ -499,6 +518,8 @@ var gradient = scale.append("defs")
     .attr("y1", "0%")
     .attr("x2", "100%")
     .attr("y2", "0%");
+
+
 function getColor(type, val){
   if(type=="pop"){
     var colorScale = d3.scale.linear().domain([400000, 40000000]).range(["#fcff7c", "#ff0000"]);
@@ -532,9 +553,12 @@ function getColor(type, val){
     var colorScale = d3.scale.log().domain([.01, 40]).range(["#ffffff", "#c90449"]);
     return colorScale(Math.log(val));
   }
+  else{
+    return "#eee";
+  }
 }
 function setMap(type){
-  
+  curType = type;
   d3.json("us.json", function(error, us) {
     map.style("-webkit-transition-duration", "1s").style("transition-duration", "1s;")
     .style("fill",function(d){
