@@ -16,11 +16,11 @@ html{
 body{
   background: #333;
 }
-a:visited{
-  color:#7777ff;
-}
 a:hover{
   color:orange;
+}
+a {
+  color:#98e51d;
 }
 h1 {
   color: #85ce19;
@@ -49,14 +49,14 @@ h3 {
   padding:0px;
 }
 h4 {
-  font:40px 'Abel';
+  font:30px 'Abel';
   font-weight:bold;
   margin-top:10px;
   text-transform: uppercase;
   color: #fff;
   text-align:left;
   background-color: orange;
-  width:135px;
+  width:105px;
   padding:10px;
   border-radius:15px;
 }
@@ -109,7 +109,7 @@ form{
   width:80%;
   overflow:auto;
   height:100%;
-  font: 20px 'News Cycle';
+  font: 17px 'News Cycle';
   margin-top:3000px;
   /*text-align:center;*/
   color:#fff;
@@ -210,20 +210,21 @@ div.tooltip {
 </div>
 <div id="blurb">
   <h4>go back</h4>
-  Bigfoot is one of the most widely known monster tall-tales known to modern-day Americans. Also known as Sasquatch, this ape-like creature is said to wander around parts of North-America, often trying to stay hidden in secluded locations. Due to lack of scientific data on the creature, most people believe Bigfoot to be a fraud or some kind of old wives' tale. However, this doesn't mean that people do not continue to believe in the sightings of the monster even up until today. We conducted a survey asking what state in the USA people thought had the most number of annual Bigfoot sightings and why. This is our visualization of data variables that people commonly associated with Bigfoot and their correlation with the actual number of sightings. <br><br>
+  Bigfoot is one of the most widely known monster tall-tales known to modern-day Americans. Also known as Sasquatch, this ape-like creature is said to wander around parts of North-America, often trying to stay hidden in secluded locations. Due to lack of scientific data on the creature, most people believe Bigfoot to be a fraud or some kind of old wives' tale. However, this doesn't mean that people do not continue to believe in the sightings of the monster even up until today.<br><br>We conducted a survey asking what state in the USA people thought had the most number of annual Bigfoot sightings and why. This is our visualization of data variables that people commonly associated with Bigfoot and their correlation with the actual number of sightings.
   The <font style="color:orange"><b>footprints</b></font> on the graph represent the number of Bigfoot sightings, and you can see the size key on the right of the map.
   The <font style="color:orange"><b>buttons</b></font> on the right change the map to correlate with a different variable. 
   The <font style="color:orange"><b>color key</b></font> above the buttons is the scale for each set of data.
   <br>
-  <h6><span style="font-size:20px">Sources:</span><br>
-    Bfro: The Bigfoot Researchers Organization: <a href="http://www.bfro.net/gdb/">http://www.bfro.net/gdb/</a> <br>
+  <h6><span style="font-size:25px;color:orange">Sources:</span> </h6>
+    <span style="font-size:15px;line-height:18px">
+      Bfro: The Bigfoot Researchers Organization: <a href="http://www.bfro.net/gdb/">http://www.bfro.net/gdb/</a> <br>
     US Census Bereau Urban and Rural Classification - <a href="https://www.census.gov/geo/reference/ua/uafaq.html">https://www.census.gov/geo/reference/ua/uafaq.html</a><br>
     Mean Elevations of States - <a href="http://www.netstate.com/states/tables/state_elevation_mean.htm">http://www.netstate.com/states/tables/state_elevation_mean.htm </a><br>
     LiveScience Marijuana Usage by State - <a href="http://i.livescience.com/images/i/000/071/713/i02/pot-map1.png?1415133010 ">http://i.livescience.com/images/i/000/071/713/i02/pot-map1.png?1415133010 </a><br>
     Nowak, David J. Tree and Impervious Cover in the United States - <a href="http://www.sciencedirect.com/science/article/pii/S0169204612001193">http://www.sciencedirect.com/science/article/pii/S0169204612001193 </a><br>
     Current Results Average Temperature - <a href="https://www.currentresults.com/Weather/US/average-annual-state-temperatures.php">https://www.currentresults.com/Weather/US/average-annual-state-temperatures.php</a> <br>
     Current Results Average Annual Rainfall - <a href="https://www.currentresults.com/Weather/US/average-annual-state-precipitation.php">https://www.currentresults.com/Weather/US/average-annual-state-precipitation.php</a> <br>
-    Statista Alcohol Consumption per Capita - <a href="http://www.statista.com/statistics/442848/per-capita-alcohol-consumption-of-all-beverages-in-the-us-by-state/">http://www.statista.com/statistics/442848/per-capita-alcohol-consumption-of-all-beverages-in-the-us-by-state/</a> </h6>
+    Statista Alcohol Consumption per Capita - <a href="http://www.statista.com/statistics/442848/per-capita-alcohol-consumption-of-all-beverages-in-the-us-by-state/">http://www.statista.com/statistics/442848/per-capita-alcohol-consumption-of-all-beverages-in-the-us-by-state/</a></span>
 
 </div>
 <script>
@@ -410,6 +411,18 @@ d3.json("us.json", function(error, us) {
           }
           else if(d.properties.stateName == "California"){
             var stringToReturn = (c1-(d.properties.numSight/18)-7) + "," + (c2-(d.properties.numSight/20));
+          }
+          else if(d.properties.stateName == "Minnesota"){
+            var stringToReturn = (c1-(d.properties.numSight/18)-10) + "," + (c2-(d.properties.numSight/20));
+          }
+          else if(d.properties.stateName == "Pennsylvania"){
+            var stringToReturn = (c1-(d.properties.numSight/18)) + "," + (c2-(d.properties.numSight/20)-10);
+          }
+          else if(d.properties.stateName == "North Carolina"){
+            var stringToReturn = (c1-(d.properties.numSight/18)) + "," + (c2-(d.properties.numSight/20)-10);
+          }
+          else if(d.properties.stateName == "Virginia"){
+            var stringToReturn = (c1-(d.properties.numSight/18)) + "," + (c2-(d.properties.numSight/20)-5);
           }
           else if(d.properties.stateName == "New York"){
             var stringToReturn = (c1-(d.properties.numSight/18)) + "," + (c2-(d.properties.numSight/20)-7);
