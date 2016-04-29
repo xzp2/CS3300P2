@@ -14,7 +14,7 @@ html{
  overflow:hidden;
 }
 body{
-  background: #333;
+  background: #222;
 }
 a:hover{
   color:orange;
@@ -84,7 +84,7 @@ form{
   padding-top: 40px;
 }
 .background {
-  fill: #333;
+  fill: #222;
 }
 .buttons{
   margin-left: 1000px;
@@ -214,17 +214,10 @@ div.tooltip {
   The <font style="color:orange"><b>footprints</b></font> on the graph represent the number of Bigfoot sightings, and you can see the size key on the right of the map.
   The <font style="color:orange"><b>buttons</b></font> on the right change the map to correlate with a different variable. 
   The <font style="color:orange"><b>color key</b></font> above the buttons is the scale for each set of data.
-<<<<<<< HEAD
   <br>
   <h6><span style="font-size:25px;color:orange">Sources:</span> </h6>
     <span style="font-size:15px;line-height:18px">
       Bfro: The Bigfoot Researchers Organization: <a href="http://www.bfro.net/gdb/">http://www.bfro.net/gdb/</a> <br>
-=======
-  <br><br>
-  Go ahead and click the "Go Back" button to get started!<br>
-  <h6><span style="font-size:20px">Sources:</span><br>
-    Bfro: The Bigfoot Researchers Organization: <a href="http://www.bfro.net/gdb/">http://www.bfro.net/gdb/</a> <br>
->>>>>>> ece5badf88bddc2646b8ccb4bb99149c993d967a
     US Census Bereau Urban and Rural Classification - <a href="https://www.census.gov/geo/reference/ua/uafaq.html">https://www.census.gov/geo/reference/ua/uafaq.html</a><br>
     Mean Elevations of States - <a href="http://www.netstate.com/states/tables/state_elevation_mean.htm">http://www.netstate.com/states/tables/state_elevation_mean.htm </a><br>
     LiveScience Marijuana Usage by State - <a href="http://i.livescience.com/images/i/000/071/713/i02/pot-map1.png?1415133010 ">http://i.livescience.com/images/i/000/071/713/i02/pot-map1.png?1415133010 </a><br>
@@ -397,7 +390,7 @@ d3.json("us.json", function(error, us) {
       "<br/><b>Drug Usage:</b> " + d.properties.Drug + 
       "<br/><b>Alcohol Usage:</b> " + d.properties.Alcohol + 
       "<br/><b>Percent Urban Area:</b> " + d.properties.urbArea+ "");  
-    d3.select("#"+d.properties.stateName.replace(/ /g,"")).style("fill","#555"); 
+    d3.select("#"+d.properties.stateName.replace(/ /g,"")).style("fill","#444"); 
     })
   .on("mouseout", function(d) {
     map.style("-webkit-transition-duration", ".4s").style("transition-duration", ".4s;")
